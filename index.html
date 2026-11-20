@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#0B1B2B">
+<title>Hotel Gaurav · Restaurant &amp; Permit Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============ RESET & VARIABLES ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --saffron:#FF9933;--chilli:#E63946;--navy:#0B1B2B;--cream:#FFF8E7;
+  --cream-dim:#F5E6C8;--navy-light:#1B2F44;--gold:#FFD166;
+  --veg-green:#16A34A;--nonveg-red:#DC2626;
+  --shadow-sm:0 2px 8px rgba(11,27,43,.12);
+  --shadow-md:0 8px 24px rgba(11,27,43,.18);
+  --shadow-lg:0 16px 40px rgba(11,27,43,.24);
+  --r-sm:12px;--r-md:20px;--r-lg:32px;
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+  --smooth:cubic-bezier(.22,.61,.36,1);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--cream);color:var(--navy);
+  font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;min-height:100vh;overflow-x:hidden;padding-bottom:2rem;
+}
+h1,h2,h3,h4,h5,.brand,.hero-title,.section-title,.price{font-family:'Bricolage Grotesque','Poppins',system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.15}
+a{color:inherit;text-decoration:none}
+button{font-family:'Poppins',sans-serif;cursor:pointer;background:none;border:none;color:inherit;transition:all .2s var(--smooth)}
+input,select,textarea{font-family:'Poppins',sans-serif;background:#fff;border:2px solid rgba(11,27,43,.12);color:var(--navy);border-radius:var(--r-sm);padding:.85rem 1.1rem;width:100%;outline:none;transition:border .2s,box-shadow .2s;font-size:.95rem}
+input:focus,select:focus,textarea:focus{border-color:var(--saffron);box-shadow:0 0 0 4px rgba(255,153,51,.2)}
+::placeholder{color:#8B9AAB}
+img{max-width:100%;display:block}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+/* ============ LAYOUT ============ */
+.container{max-width:1400px;margin:0 auto;padding:0 1.25rem}
+
+/* ============ HERO ============ */
+.hero{background:linear-gradient(145deg,var(--navy) 0%,var(--navy-light) 100%);border-radius:0 0 40px 40px;padding:1.5rem 0 3.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,153,51,.25) 0%,transparent 70%);border-radius:50%;pointer-events:none;animation:floatOrb 12s ease-in-out infinite}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(230,57,70,.2) 0%,transparent 70%);border-radius:50%;pointer-events:none;animation:floatOrb 15s ease-in-out infinite reverse}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-30px) scale(1.1)}}
+
+.header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 0 1rem;gap:1rem;position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:.75rem;font-size:1.85rem;font-weight:800;color:var(--cream);text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.brand i{color:var(--saffron);font-size:2.1rem;filter:drop-shadow(0 0 12px rgba(255,153,51,.5))}
+.brand span{color:var(--saffron);font-weight:600;font-size:1.05rem;margin-left:.3rem;letter-spacing:.02em;font-family:'Poppins',sans-serif}
+.restaurant-info{display:flex;flex-wrap:wrap;gap:1rem;font-size:.82rem;color:var(--cream-dim);background:rgba(255,255,255,.08);backdrop-filter:blur(6px);padding:.6rem 1.2rem;border-radius:50px;border:1px solid rgba(255,153,51,.25)}
+.restaurant-info i{color:var(--saffron);margin-right:.35rem;width:1rem}
+
+/* ============ ANIMATED CENTER LOGO ============ */
+.hero-content{position:relative;z-index:2;text-align:center;padding:1.5rem 0 .5rem}
+
+.logo-stage{
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+  position:relative;
+  width:100%;
+  max-width:560px;
+  min-height:185px;
+}
+.logo-orbit{
+  position:absolute;
+  inset:0;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.logo-orbit::before,
+.logo-orbit::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  border:1.5px dashed rgba(255,153,51,.35);
+}
+.logo-orbit::before{
+  width:210px;height:210px;
+  animation:spinSlow 20s linear infinite;
+}
+.logo-orbit::after{
+  width:290px;height:290px;
+  border-style:solid;
+  border-color:rgba(230,57,70,.18);
+  animation:spinSlow 30s linear infinite reverse;
+}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+
+.logo-orb{
+  position:absolute;
+  width:14px;height:14px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--gold),var(--saffron));
+  box-shadow:0 0 20px rgba(255,153,51,.8),0 0 40px rgba(255,153,51,.4);
+}
+.logo-orb.o1{animation:orbit1 8s linear infinite}
+.logo-orb.o2{width:10px;height:10px;background:radial-gradient(circle at 30% 30%,#fff,var(--chilli));box-shadow:0 0 18px rgba(230,57,70,.9);animation:orbit2 12s linear infinite reverse}
+.logo-orb.o3{width:8px;height:8px;background:radial-gradient(circle at 30% 30%,#fff,var(--gold));box-shadow:0 0 14px rgba(255,209,102,.9);animation:orbit3 10s linear infinite}
+@keyframes orbit1{from{transform:rotate(0deg) translateX(105px) rotate(0deg)}to{transform:rotate(360deg) translateX(105px) rotate(-360deg)}}
+@keyframes orbit2{from{transform:rotate(0deg) translateX(145px) rotate(0deg)}to{transform:rotate(360deg) translateX(145px) rotate(-360deg)}}
+@keyframes orbit3{from{transform:rotate(0deg) translateX(75px) rotate(0deg)}to{transform:rotate(360deg) translateX(75px) rotate(-360deg)}}
+
+.logo-core{
+  position:relative;
+  z-index:3;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,153,51,.4);
+  border-radius:32px;
+  padding:1.4rem 2.6rem;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.4),
+    0 0 0 1px rgba(255,153,51,.15) inset,
+    0 0 60px rgba(255,153,51,.2);
+  animation:corePulse 4s ease-in-out infinite;
+  overflow:hidden;
+}
+.logo-core::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:linear-gradient(45deg,transparent 30%,rgba(255,153,51,.15) 50%,transparent 70%);
+  animation:shimmer 3.5s ease-in-out infinite;
+}
+@keyframes shimmer{0%{transform:translateX(-100%) rotate(45deg)}100%{transform:translateX(100%) rotate(45deg)}}
+@keyframes corePulse{0%,100%{box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 0 1px rgba(255,153,51,.15) inset,0 0 60px rgba(255,153,51,.2)}50%{box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 0 1px rgba(255,153,51,.3) inset,0 0 80px rgba(255,153,51,.35)}}
+
+.logo-mark i{
+  font-size:2.4rem;
+  color:var(--saffron);
+  filter:drop-shadow(0 0 12px rgba(255,153,51,.7));
+  animation:iconBob 2.5s ease-in-out infinite;
+}
+@keyframes iconBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-8deg)}}
+
+.logo-name{
+  font-family:'Bricolage Grotesque','Poppins',sans-serif;
+  font-weight:800;
+  font-size:clamp(1.85rem,5vw,2.75rem);
+  letter-spacing:-.04em;
+  line-height:1.05;
+  background:linear-gradient(120deg,#FFF8E7 20%,var(--saffron) 45%,var(--gold) 55%,#FFF8E7 80%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shineText 4s linear infinite;
+  text-align:center;
+}
+@keyframes shineText{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+.logo-tag{
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+  font-size:.78rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--saffron);
+  opacity:.9;
+  margin-top:.15rem;
+}
+.logo-tag .sep{display:inline-block;margin:0 .45rem;color:var(--chilli)}
+
+.hero-title{font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--cream);margin-bottom:.5rem;line-height:1.15;letter-spacing:-.03em}
+.hero-title .highlight{color:var(--saffron);position:relative;display:inline-block}
+.hero-title .highlight::after{content:'';position:absolute;bottom:.05em;left:0;right:0;height:.12em;background:var(--chilli);border-radius:4px;transform:scaleX(.9);transition:transform .3s var(--bounce)}
+.hero-title:hover .highlight::after{transform:scaleX(1)}
+.hero-sub{font-size:1rem;color:var(--cream-dim);max-width:650px;margin:.6rem auto 1.4rem;font-weight:400;opacity:.92}
+.hero-notice{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.8rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,209,102,.3);padding:.55rem 1.2rem;border-radius:50px;color:var(--gold);font-size:.82rem;margin-bottom:1.5rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center}
+.btn-primary{background:var(--saffron);color:var(--navy);font-weight:700;padding:.9rem 2.2rem;border-radius:60px;font-size:1rem;display:inline-flex;align-items:center;gap:.6rem;box-shadow:0 6px 20px rgba(255,153,51,.4);transition:transform .25s var(--bounce),box-shadow .25s;border:none}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 28px rgba(255,153,51,.55)}
+.btn-primary:active{transform:translateY(0) scale(.97)}
+.btn-outline{background:transparent;color:var(--cream);font-weight:600;padding:.9rem 2.2rem;border-radius:60px;font-size:1rem;display:inline-flex;align-items:center;gap:.6rem;border:2px solid rgba(255,248,231,.4);transition:all .25s var(--smooth)}
+.btn-outline:hover{border-color:var(--saffron);color:var(--saffron);background:rgba(255,153,51,.1)}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(230,57,70,.92);color:#fff;font-size:.75rem;font-weight:600;padding:.4rem 1rem;border-radius:40px;margin-bottom:.8rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* ============ SEARCH & CATEGORIES ============ */
+.search-section{display:flex;flex-direction:column;gap:1rem;margin:0 0 2rem;position:relative;z-index:5}
+.search-wrapper{display:flex;align-items:center;background:#fff;border-radius:60px;border:2px solid rgba(11,27,43,.08);padding:.25rem .25rem .25rem 1.4rem;box-shadow:var(--shadow-sm);transition:box-shadow .3s,border .3s;max-width:680px;margin:0 auto;width:100%}
+.search-wrapper:focus-within{border-color:var(--saffron);box-shadow:0 0 0 5px rgba(255,153,51,.15),var(--shadow-md)}
+.search-wrapper i{color:var(--saffron);font-size:1.15rem}
+.search-wrapper input{border:none;background:transparent;box-shadow:none;padding:.85rem 1rem;font-size:1rem;color:var(--navy)}
+.search-wrapper input:focus{box-shadow:none}
+.search-wrapper button{background:var(--navy);color:var(--cream);font-weight:600;padding:.8rem 2rem;border-radius:60px;font-size:.95rem;transition:all .25s var(--smooth);white-space:nowrap;border:none}
+.search-wrapper button:hover{background:var(--saffron);color:var(--navy);transform:scale(1.02)}
+
+.categories{
+  display:flex;
+  gap:.65rem;
+  padding:.5rem .2rem .8rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.cat-btn{
+  background:#fff;
+  border:2px solid rgba(11,27,43,.08);
+  color:var(--navy);
+  padding:.6rem 1.35rem;
+  border-radius:50px;
+  font-size:.88rem;
+  font-weight:600;
+  white-space:nowrap;
+  transition:all .25s var(--bounce);
+  display:flex;
+  align-items:center;
+  gap:.45rem;
+  box-shadow:var(--shadow-sm);
+}
+.cat-btn i{font-size:.85rem;color:var(--saffron);transition:color .2s,transform .3s var(--bounce)}
+.cat-btn:hover{border-color:var(--saffron);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.cat-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:var(--cream);
+  box-shadow:0 6px 20px rgba(11,27,43,.3);
+}
+.cat-btn.active i{color:var(--saffron);transform:scale(1.1)}
+
+/* ============ MENU ============ */
+.menu-section{margin-top:1rem}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.section-title{font-size:2rem;color:var(--navy);display:flex;align-items:center;gap:.6rem}
+.section-title i{color:var(--chilli);font-size:1.6rem}
+.section-sub{color:#5A6B7C;font-size:.92rem;font-weight:400}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.6rem;margin:1.5rem 0 2.5rem}
+.menu-card{background:#fff;border-radius:var(--r-md);overflow:hidden;transition:transform .3s var(--bounce),box-shadow .3s var(--smooth);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;border:1px solid rgba(11,27,43,.06);position:relative}
+.menu-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+
+.card-img-wrapper{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:16/11;
+  background:var(--cream-dim);
+}
+.card-img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--smooth)}
+.menu-card:hover .card-img{transform:scale(1.07)}
+
+.price-badge{position:absolute;top:.85rem;right:.85rem;background:var(--saffron);color:var(--navy);font-family:'Bricolage Grotesque','Poppins',sans-serif;font-weight:800;font-size:1.1rem;padding:.35rem .95rem;border-radius:50px;box-shadow:0 4px 14px rgba(11,27,43,.25);letter-spacing:-.02em;z-index:2}
+.cat-tag{position:absolute;top:.85rem;left:.85rem;background:var(--navy);color:#fff;font-size:.68rem;font-weight:600;padding:.3rem .85rem;border-radius:40px;text-transform:uppercase;letter-spacing:.04em;z-index:2;display:inline-flex;align-items:center;gap:.35rem}
+.diet-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.diet-dot.veg{background:#22C55E;box-shadow:0 0 6px #22C55E}
+.diet-dot.nonveg{background:#EF4444;box-shadow:0 0 6px #EF4444}
+
+.card-content{padding:1.2rem 1.25rem 1.3rem;display:flex;flex-direction:column;flex:1}
+.card-title-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.25rem}
+.card-title{font-family:'Bricolage Grotesque','Poppins',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.02em;color:var(--navy);line-height:1.25}
+.card-title small{display:block;font-size:.88rem;font-weight:600;color:var(--chilli);letter-spacing:.01em;margin-top:.15rem;font-family:'Poppins',sans-serif}
+.card-desc{font-size:.85rem;color:#5A6B7C;margin:.45rem 0 .95rem;line-height:1.45;flex:1}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-top:auto}
+.qty-control{display:flex;align-items:center;background:var(--cream);border-radius:50px;border:2px solid rgba(11,27,43,.1);overflow:hidden;transition:border .2s}
+.qty-control:hover{border-color:var(--saffron)}
+.qty-btn{padding:.45rem .85rem;font-size:1.2rem;font-weight:700;color:var(--navy);transition:background .15s,color .15s,transform .15s var(--bounce);line-height:1;display:flex;align-items:center;justify-content:center;min-width:36px}
+.qty-btn:hover{background:var(--saffron);color:var(--navy)}
+.qty-btn:active{transform:scale(.85)}
+.qty-value{padding:0 .2rem;font-weight:700;min-width:1.9rem;text-align:center;color:var(--navy);font-size:1rem;font-family:'Bricolage Grotesque','Poppins',sans-serif}
+.add-btn{background:var(--navy);color:var(--cream);font-weight:600;padding:.6rem 1.35rem;border-radius:50px;font-size:.88rem;transition:all .25s var(--bounce);display:flex;align-items:center;gap:.45rem;border:none;white-space:nowrap;box-shadow:0 4px 12px rgba(11,27,43,.15)}
+.add-btn:hover{background:var(--saffron);color:var(--navy);transform:scale(1.05);box-shadow:0 6px 18px rgba(255,153,51,.4)}
+.add-btn:active{transform:scale(.95)}
+
+/* ============ STICKY CART ============ */
+.sticky-cart{position:fixed;bottom:1.75rem;right:1.75rem;z-index:1000;background:var(--navy);border-radius:60px;padding:.85rem 1.6rem .85rem 1.8rem;display:flex;align-items:center;gap:.9rem;box-shadow:var(--shadow-lg),0 0 0 3px var(--saffron);cursor:pointer;transition:transform .3s var(--bounce),box-shadow .3s;color:var(--cream);font-weight:600;font-size:.95rem;border:none}
+.sticky-cart:hover{transform:scale(1.05) translateY(-3px);box-shadow:var(--shadow-lg),0 0 0 4px var(--saffron),0 0 24px rgba(255,153,51,.5)}
+.sticky-cart i{color:var(--saffron);font-size:1.35rem}
+.sticky-cart .cart-count{background:var(--saffron);color:var(--navy);border-radius:40px;padding:.15rem .75rem;font-weight:800;font-size:.9rem;font-family:'Bricolage Grotesque','Poppins',sans-serif}
+
+/* ============ CART PANEL ============ */
+.cart-panel{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;pointer-events:none;z-index:2000;padding:1rem}
+.cart-panel.open{pointer-events:auto}
+.cart-overlay{position:absolute;inset:0;background:rgba(11,27,43,.55);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s var(--smooth);pointer-events:none}
+.cart-panel.open .cart-overlay{opacity:1;pointer-events:auto}
+.cart-drawer{position:relative;width:100%;max-width:560px;max-height:92vh;background:#fff;border-radius:32px 32px 24px 24px;box-shadow:0 -12px 48px rgba(11,27,43,.25);padding:1.8rem 1.6rem 1.5rem;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .4s var(--bounce);overflow-y:auto;pointer-events:auto;border-top:5px solid var(--saffron)}
+.cart-panel.open .cart-drawer{transform:translateY(0)}
+.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
+.cart-header h3{font-size:1.6rem;color:var(--navy);display:flex;align-items:center;gap:.6rem;font-family:'Bricolage Grotesque','Poppins',sans-serif;font-weight:800}
+.cart-header h3 i{color:var(--saffron);font-size:1.4rem}
+.close-cart{background:var(--cream);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--navy);transition:background .2s,transform .25s var(--bounce);border:none}
+.close-cart:hover{background:var(--chilli);color:#fff;transform:rotate(90deg) scale(1.1)}
+
+.cart-items{flex:1;overflow-y:auto;margin:.5rem 0 1rem;max-height:42vh;padding-right:.4rem}
+.cart-item{display:flex;gap:.9rem;align-items:center;padding:.85rem .9rem;margin-bottom:.65rem;background:var(--cream);border-radius:16px;border:1.5px solid rgba(11,27,43,.08);animation:fadeSlideIn .3s var(--smooth)}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+.cart-item-img{width:68px;height:68px;border-radius:14px;object-fit:cover;flex-shrink:0;background:var(--cream-dim);border:2px solid #fff;box-shadow:0 2px 8px rgba(11,27,43,.1)}
+.cart-item-info{display:flex;flex-direction:column;flex:1;min-width:0}
+.cart-item-title{font-weight:700;color:var(--navy);font-size:.98rem;line-height:1.25}
+.cart-item-marathi{font-size:.78rem;color:#7A8B9C;margin-bottom:.15rem}
+.cart-item-price{font-size:.85rem;color:var(--chilli);font-weight:700;margin-top:.15rem}
+.cart-item-qty{display:flex;align-items:center;gap:.4rem;background:#fff;border-radius:50px;padding:.2rem;border:2px solid rgba(11,27,43,.1);flex-shrink:0}
+.cart-item-qty button{background:transparent;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--navy);font-size:1.15rem}
+.cart-item-qty button:hover{background:var(--saffron);color:var(--navy)}
+.cart-item-qty span{font-weight:700;min-width:1.6rem;text-align:center;font-size:1rem;color:var(--navy);font-family:'Bricolage Grotesque','Poppins',sans-serif}
+
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.15rem;padding:1rem 0;border-top:2px dashed rgba(11,27,43,.12);margin-top:.5rem}
+.cart-total-row span:first-child{font-family:'Bricolage Grotesque','Poppins',sans-serif;font-weight:700;color:var(--navy)}
+.cart-total-row span:last-child{color:var(--chilli);font-size:1.6rem;font-family:'Bricolage Grotesque','Poppins',sans-serif;font-weight:800}
+
+.checkout-section{margin:.8rem 0 .5rem}
+.checkout-section h4{font-size:1rem;color:var(--navy);margin-bottom:.8rem;font-weight:700;font-family:'Bricolage Grotesque','Poppins',sans-serif;display:flex;align-items:center}
+.delivery-toggle{display:flex;gap:.6rem;margin-bottom:1.1rem}
+.delivery-toggle button{flex:1;padding:.85rem;border-radius:50px;background:var(--cream);border:2px solid rgba(11,27,43,.08);color:#5A6B7C;font-weight:600;transition:all .25s var(--bounce);display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:.9rem}
+.delivery-toggle button.active{background:var(--navy);border-color:var(--navy);color:var(--cream);box-shadow:0 6px 18px rgba(11,27,43,.25)}
+.delivery-toggle button.active i{color:var(--saffron)}
+.checkout-fields{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1rem}
+.checkout-fields input,.checkout-fields textarea,.single-field input{background:var(--cream);border:2px solid rgba(11,27,43,.08)}
+
+.whatsapp-btn{background:#25D366;color:#fff;font-weight:700;padding:1.1rem;border-radius:60px;display:flex;align-items:center;justify-content:center;gap:.7rem;font-size:1.05rem;transition:all .3s var(--bounce);border:none;box-shadow:0 8px 24px rgba(37,211,102,.35);margin-top:.5rem}
+.whatsapp-btn:hover{background:#20BA5A;transform:translateY(-3px) scale(1.02)}
+.empty-cart{text-align:center;color:#8B9AAB;padding:2.5rem 1rem;font-size:.95rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+.empty-cart i{font-size:2.5rem;color:var(--saffron);opacity:.5}
+
+/* ============ TOAST & FOOTER ============ */
+.toast{position:fixed;bottom:5.5rem;right:1.5rem;background:var(--navy);color:var(--cream);padding:.85rem 1.4rem;border-radius:50px;font-size:.9rem;font-weight:500;box-shadow:var(--shadow-lg);border-left:4px solid var(--saffron);z-index:3000;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s var(--bounce);pointer-events:none;display:flex;align-items:center;gap:.6rem;max-width:calc(100vw - 3rem)}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast i{color:var(--saffron)}
+
+.footer{text-align:center;padding:2rem 1rem 1rem;color:#64748B;font-size:.85rem;border-top:1px solid rgba(11,27,43,.08);margin-top:2rem;line-height:1.8}
+.footer strong{color:var(--navy)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:768px){
+  .hero{padding:1rem 0 2.5rem;border-radius:0 0 28px 28px}
+  .header{flex-direction:column;align-items:flex-start;gap:.8rem}
+  .brand{font-size:1.55rem}
+  .restaurant-info{font-size:.75rem;padding:.5rem 1rem;gap:.7rem}
+  .menu-grid{grid-template-columns:1fr;gap:1.2rem}
+  .sticky-cart{bottom:1rem;right:1rem;padding:.7rem 1.3rem;font-size:.85rem}
+  .cart-drawer{padding:1.4rem 1rem 1rem;max-width:100%}
+  .categories{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <i class="fas fa-utensils"></i>
+        Hotel Gaurav
+        <span>हॉटेल गौरव</span>
+      </div>
+      <div class="restaurant-info">
+        <span><i class="fas fa-map-pin"></i> Parner - Ambad, Dist. Jalna</span>
+        <span><i class="fas fa-phone"></i> 9767673280</span>
+      </div>
+    </header>
+
+    <div class="hero-content">
+      <div class="logo-stage" aria-label="Hotel Gaurav Logo">
+        <div class="logo-orbit">
+          <span class="logo-orb o1"></span>
+          <span class="logo-orb o2"></span>
+          <span class="logo-orb o3"></span>
+        </div>
+        <div class="logo-core">
+          <div class="logo-mark">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <div class="logo-name">Hotel Gaurav</div>
+          <div class="logo-tag">Restaurant <span class="sep">&amp;</span> Permit Bar</div>
+        </div>
+      </div>
+
+      <div class="hero-badge"><i class="fas fa-fire"></i> ॥ श्री ॥ Authentic Multi-Cuisine &amp; Maharashtrian</div>
+      <h1 class="hero-title">Rich flavours.<br><span class="highlight">Freshly</span> prepared for you.</h1>
+      <p class="hero-sub">Special Chicken &amp; Mutton Handis, Tandoori Kebabs, Chinese &amp; Paneer Delicacies, Soups, and Fresh Tandoor Rotis.</p>
+
+      <div class="hero-notice">
+        <span><i class="fas fa-map-marker-alt"></i> पारनेर - अंबड, जि. जालना</span>
+        <span>•</span>
+        <span><i class="fab fa-whatsapp"></i> मो. 9767673280</span>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-primary" id="heroOrderBtn"><i class="fas fa-shopping-bag"></i> Order now</button>
+        <button class="btn-outline" id="heroMenuBtn"><i class="fas fa-book-open"></i> View menu</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="search-section" id="menuSection">
+    <div class="search-wrapper">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search Chicken Handi, Paneer Tikka, Biryani, Soup, Roti..." aria-label="Search menu">
+      <button id="searchBtn">Search</button>
+    </div>
+    <div class="categories" id="categoryContainer">
+      <button class="cat-btn active" data-category="all"><i class="fas fa-utensils"></i> All Items</button>
+      <button class="cat-btn" data-category="soup"><i class="fas fa-mug-hot"></i> Soups</button>
+      <button class="cat-btn" data-category="vegsnacks"><i class="fas fa-pepper-hot"></i> Veg Snacks</button>
+      <button class="cat-btn" data-category="nonvegsnacks"><i class="fas fa-drumstick-bite"></i> Non-Veg Snacks &amp; Kebab</button>
+      <button class="cat-btn" data-category="vegspecial"><i class="fas fa-leaf"></i> Veg Special</button>
+      <button class="cat-btn" data-category="paneer"><i class="fas fa-cheese"></i> Paneer &amp; Palak</button>
+      <button class="cat-btn" data-category="nonvegspecial"><i class="fas fa-fire"></i> Non-Veg Special</button>
+      <button class="cat-btn" data-category="rice"><i class="fas fa-bowl-rice"></i> Rice &amp; Biryani</button>
+      <button class="cat-btn" data-category="roti"><i class="fas fa-bread-slice"></i> Roti &amp; Naan</button>
+      <button class="cat-btn" data-category="papad"><i class="fas fa-cookie"></i> Papad</button>
+    </div>
+  </div>
+
+  <section class="menu-section">
+    <div class="section-header">
+      <h2 class="section-title"><i class="fas fa-bowl-food"></i> Our Menu</h2>
+      <span class="section-sub">हॉटेल गौरव स्पेशल • Freshly cooked on order</span>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+</div>
+
+<!-- STICKY CART -->
+<button class="sticky-cart" id="stickyCart" aria-label="Open cart">
+  <i class="fas fa-shopping-bag"></i>
+  <span>Cart</span>
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-label="Shopping cart">
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-bag"></i> Your Order</h3>
+      <button class="close-cart" id="closeCart" aria-label="Close cart"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+
+    <div class="checkout-section">
+      <h4><i class="fas fa-motorcycle" style="color:var(--chilli);margin-right:.4rem;"></i> Order type</h4>
+      <div class="delivery-toggle" id="deliveryToggle">
+        <button class="active" data-type="takeaway"><i class="fas fa-chair"></i> Table / Takeaway</button>
+        <button data-type="delivery"><i class="fas fa-motorcycle"></i> Delivery</button>
+      </div>
+    </div>
+
+    <div class="checkout-section" id="takeawayFields">
+      <h4><i class="fas fa-hashtag" style="color:var(--chilli);margin-right:.4rem;"></i> Table Number / Parcel Name</h4>
+      <div class="single-field">
+        <input type="text" id="tableNumber" placeholder="e.g. Table 4 or Parcel">
+      </div>
+    </div>
+
+    <div class="checkout-section" id="deliveryFields" style="display:none;">
+      <h4><i class="fas fa-user" style="color:var(--chilli);margin-right:.4rem;"></i> Your Details</h4>
+      <div class="checkout-fields">
+        <input type="text" id="customerName" placeholder="Full name" autocomplete="name">
+        <input type="tel" id="customerPhone" placeholder="Phone number" autocomplete="tel" inputmode="tel">
+        <textarea id="customerAddress" rows="2" placeholder="Delivery address" autocomplete="street-address"></textarea>
+      </div>
+    </div>
+
+    <button class="whatsapp-btn" id="whatsappBtn">
+      <i class="fab fa-whatsapp"></i> Place order on WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="footer">
+  <p><strong>Hotel Gaurav · Restaurant &amp; Permit Bar (हॉटेल गौरव)</strong></p>
+  <p>Parner - Ambad, Dist. Jalna • WhatsApp / Call: 9767673280</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ============ CONFIG ============ */
+  const WHATSAPP_NUMBER = '919767673280';
+  const FALLBACK_IMG = 'img/default.jpg';
+
+  /* ============ MENU DATA (Hotel Gaurav - Individual img/ paths) ============ */
+  const menuItems = [
+    // --- 1. SOUP SPECIAL ---
+    { id:'sp1', name:'Tomato Soup',        marathi:'टोमॅटो सुप',        price:60,  category:'soup', diet:'veg',    desc:'Rich, tangy & creamy ripe tomato soup', img:'img/tomato-soup.jpg' },
+    { id:'sp2', name:'Veg Soup',           marathi:'व्हेज सुप',          price:50,  category:'soup', diet:'veg',    desc:'Hot garden vegetable clear/thick soup', img:'img/veg-soup.jpg' },
+    { id:'sp3', name:'Chicken Soup',       marathi:'चिकन सुप',          price:90,  category:'soup', diet:'nonveg', desc:'Comforting spiced chicken broth soup', img:'img/chicken-soup.jpg' },
+    { id:'sp4', name:'Chicken Clear Soup', marathi:'चिकन क्लेअर सुप',   price:90,  category:'soup', diet:'nonveg', desc:'Light aromatic clear chicken soup with herbs', img:'img/chicken-clear-soup.jpg' },
+    { id:'sp5', name:'Chicken Ukkad Soup', marathi:'चिकन उक्कड सुप',    price:130, category:'soup', diet:'nonveg', desc:'Traditional Maharashtrian turmeric-garlic chicken alni soup', img:'img/chicken-ukkad-soup.jpg' },
+    { id:'sp6', name:'Mutton Soup',        marathi:'मटन सुप',           price:150, category:'soup', diet:'nonveg', desc:'Flavorful slow-simmered mutton soup', img:'img/mutton-soup.jpg' },
+    { id:'sp7', name:'Mutton Ukkad Soup',  marathi:'मटन उक्कड सुप',     price:170, category:'soup', diet:'nonveg', desc:'Authentic spiced Maharashtrian mutton alni soup', img:'img/mutton-ukkad-soup.jpg' },
+
+    // --- 2. PAPAD ---
+    { id:'pp1', name:'Masala Papad',       marathi:'मसाला पापड',         price:30,  category:'papad', diet:'veg', desc:'Crisp papad topped with spiced onion, tomato & coriander', img:'img/masala-papad.jpg' },
+    { id:'pp2', name:'Roasted Papad',      marathi:'रोष्ट पापड',         price:20,  category:'papad', diet:'veg', desc:'Flame-roasted crunchy urad papad', img:'img/roasted-papad.jpg' },
+    { id:'pp3', name:'Fry Papad',          marathi:'फ्राय पापड',         price:25,  category:'papad', diet:'veg', desc:'Golden deep-fried crispy papad', img:'img/fry-papad.jpg' },
+    { id:'pp4', name:'Nagli Fry Papad',    marathi:'नागली फ्राय',        price:25,  category:'papad', diet:'veg', desc:'Crunchy fried finger-millet (nagli) papad', img:'img/nagli-fry-papad.jpg' },
+    { id:'pp5', name:'Nagli Masala Papad', marathi:'नागली मसाला',       price:30,  category:'papad', diet:'veg', desc:'Nagli papad loaded with tangy onion-tomato masala', img:'img/nagli-masala-papad.jpg' },
+    { id:'pp6', name:'Nagli Roast Papad',  marathi:'नागली रोष्ट',        price:20,  category:'papad', diet:'veg', desc:'Healthy roasted nagli papad', img:'img/nagli-roast-papad.jpg' },
+    { id:'pp7', name:'Jaipuri Papad',      marathi:'जयपुरी पापड',       price:80,  category:'papad', diet:'veg', desc:'Rajasthani special spiced masala papad platter', img:'img/jaipuri-papad.jpg' },
+    { id:'pp8', name:'Sindhi Papad',       marathi:'सिंधी पापड',        price:80,  category:'papad', diet:'veg', desc:'Crisp pepper-spiced Sindhi papad', img:'img/sindhi-papad.jpg' },
+    { id:'pp9', name:'Veg KFC',            marathi:'व्हेज केफसी',        price:150, category:'papad', diet:'veg', desc:'Extra-crunchy spiced golden veg crispy bites', img:'img/veg-kfc.jpg' },
+
+    // --- 3. ROTI SPECIAL ---
+    { id:'rt1',  name:'Tandoor Roti',          marathi:'तंदुर रोटी',         price:12, category:'roti', diet:'veg', desc:'Fresh clay-oven whole wheat roti', img:'img/tandoor-roti.jpg' },
+    { id:'rt2',  name:'Butter Roti',           marathi:'बटर रोटी',           price:15, category:'roti', diet:'veg', desc:'Tandoor roti brushed with rich butter', img:'img/butter-roti.jpg' },
+    { id:'rt3',  name:'Plain Paratha',         marathi:'प्लेन पराठा',        price:25, category:'roti', diet:'veg', desc:'Flaky layered whole-wheat paratha', img:'img/plain-paratha.jpg' },
+    { id:'rt4',  name:'Butter Paratha',        marathi:'बटर पराठा',          price:30, category:'roti', diet:'veg', desc:'Pan-roasted paratha topped with butter', img:'img/butter-paratha.jpg' },
+    { id:'rt5',  name:'Laccha Paratha',        marathi:'लच्छा पराठा',        price:60, category:'roti', diet:'veg', desc:'Multi-layered crispy tandoori laccha paratha', img:'img/laccha-paratha.jpg' },
+    { id:'rt6',  name:'Laccha Butter Paratha', marathi:'लच्छा बटर पराठा',    price:60, category:'roti', diet:'veg', desc:'Multi-layered tandoori paratha glazed with butter', img:'img/laccha-butter-paratha.jpg' },
+    { id:'rt7',  name:'Mirchi Roti',           marathi:'मिरची रोटी',         price:30, category:'roti', diet:'veg', desc:'Spicy green-chilli & coriander tandoor roti', img:'img/mirchi-roti.jpg' },
+    { id:'rt8',  name:'Missi Roti',            marathi:'मिसी रोटी',          price:40, category:'roti', diet:'veg', desc:'Spiced gram-flour & wheat traditional roti', img:'img/missi-roti.jpg' },
+    { id:'rt9',  name:'Khasta Roti',           marathi:'खस्ता रोटी',         price:50, category:'roti', diet:'veg', desc:'Crisp & flaky spiced tandoori khasta roti', img:'img/khasta-roti.jpg' },
+    { id:'rt10', name:'Butter Naan',           marathi:'बटर नान',            price:40, category:'roti', diet:'veg', desc:'Soft clay-oven naan brushed with melted butter', img:'img/butter-naan.jpg' },
+    { id:'rt11', name:'Plain Naan',            marathi:'प्लेन नान',          price:35, category:'roti', diet:'veg', desc:'Classic soft & chewy tandoor naan', img:'img/plain-naan.jpg' },
+    { id:'rt12', name:'Garlic Naan',           marathi:'गारलीक नान',         price:40, category:'roti', diet:'veg', desc:'Naan topped with roasted garlic & coriander', img:'img/garlic-naan.jpg' },
+    { id:'rt13', name:'Cheese Naan',           marathi:'चिज नान',            price:50, category:'roti', diet:'veg', desc:'Stuffed molten cheese tandoori naan', img:'img/cheese-naan.jpg' },
+    { id:'rt14', name:'Stuff Naan',            marathi:'स्टाफ नान',          price:50, category:'roti', diet:'veg', desc:'Spiced masala-stuffed tandoori naan', img:'img/stuff-naan.jpg' },
+    { id:'rt15', name:'Baby Naan',             marathi:'बेबी नान',           price:30, category:'roti', diet:'veg', desc:'Soft bite-sized baby tandoor naan', img:'img/baby-naan.jpg' },
+    { id:'rt16', name:'Kulcha',                marathi:'कुलछा',              price:25, category:'roti', diet:'veg', desc:'Soft leavened tandoori kulcha', img:'img/kulcha.jpg' },
+    { id:'rt17', name:'Butter Kulcha',         marathi:'बटर कुलछा',          price:30, category:'roti', diet:'veg', desc:'Tandoori kulcha glazed with butter', img:'img/butter-kulcha.jpg' },
+    { id:'rt18', name:'Garlic Kulcha',         marathi:'गारलीक कुलछा',       price:40, category:'roti', diet:'veg', desc:'Aromatic garlic-topped tandoori kulcha', img:'img/garlic-kulcha.jpg' },
+    { id:'rt19', name:'Chapati',               marathi:'चपाती',              price:15, category:'roti', diet:'veg', desc:'Soft homestyle tawa chapati', img:'img/chapati.jpg' },
+    { id:'rt20', name:'Paratha',               marathi:'पराठा',              price:20, category:'roti', diet:'veg', desc:'Classic tawa-roasted paratha', img:'img/paratha.jpg' },
+    { id:'rt21', name:'Bajri Bhakri',          marathi:'बाजरी भाकर',         price:20, category:'roti', diet:'veg', desc:'Authentic hand-patted pearl millet bhakri', img:'img/bajri-bhakri.jpg' },
+
+    // --- 4. VEG SNACKS ---
+    { id:'vs1',  name:'Veg Chilli Manchurian',   marathi:'व्हेज चिल्ली मंच्युरन',  price:150, category:'vegsnacks', diet:'veg', desc:'Crispy veg balls tossed in spicy Indo-Chinese chilli sauce', img:'img/veg-chilli-manchurian.jpg' },
+    { id:'vs2',  name:'Soyabean Chilli',         marathi:'सोयाबिन चिल्ली',         price:130, category:'vegsnacks', diet:'veg', desc:'Wok-tossed soya chunks with capsicum & chilli garlic sauce', img:'img/soyabean-chilli.jpg' },
+    { id:'vs3',  name:'Paneer Tikka',            marathi:'पनीर टिक्का',            price:180, category:'vegsnacks', diet:'veg', desc:'Char-grilled marinated cottage cheese cubes in tandoor', img:'img/paneer-tikka.jpg' },
+    { id:'vs4',  name:'Paneer Chilli',           marathi:'पनीर चिल्ली',            price:180, category:'vegsnacks', diet:'veg', desc:'Crispy paneer tossed in fiery soy-chilli sauce', img:'img/paneer-chilli.jpg' },
+    { id:'vs5',  name:'Paneer Crunchy / Pakoda', marathi:'पनीर कंटक्की/पकोडा',     price:150, category:'vegsnacks', diet:'veg', desc:'Golden crisp batter-fried paneer fritters', img:'img/paneer-pakoda.jpg' },
+    { id:'vs6',  name:'Paneer Roast',            marathi:'पनीर रोष्ट',             price:150, category:'vegsnacks', diet:'veg', desc:'Spiced tawa-roasted paneer cubes', img:'img/paneer-roast.jpg' },
+    { id:'vs7',  name:'Paneer Tikka Dry',        marathi:'पनीर टिक्का ड्राय',       price:200, category:'vegsnacks', diet:'veg', desc:'Smoky dry tandoori paneer tikka with mint chutney', img:'img/paneer-tikka-dry.jpg' },
+    { id:'vs8',  name:'Paneer 65',               marathi:'पनीर ६५',                price:180, category:'vegsnacks', diet:'veg', desc:'Spicy South-Indian style crispy paneer 65', img:'img/paneer-65.jpg' },
+    { id:'vs9',  name:'Veg 65',                  marathi:'व्हेज ६५',                price:150, category:'vegsnacks', diet:'veg', desc:'Crispy spiced mixed vegetable 65 starter', img:'img/veg-65.jpg' },
+    { id:'vs10', name:'Soyabean 65',             marathi:'सोयाबिन ६५',             price:150, category:'vegsnacks', diet:'veg', desc:'Crunchy masala-coated soya 65', img:'img/soyabean-65.jpg' },
+    { id:'vs11', name:'Soyabean Roast',          marathi:'सोयाबिन रोष्ट',           price:100, category:'vegsnacks', diet:'veg', desc:'Spicy roasted soya chunks starter', img:'img/soyabean-roast.jpg' },
+    { id:'vs12', name:'Garlic Roast',            marathi:'गारलिक रोष्ट',            price:150, category:'vegsnacks', diet:'veg', desc:'Crispy spiced roasted garlic bar snack', img:'img/garlic-roast.jpg' },
+    { id:'vs13', name:'Chana Roast',             marathi:'चना रोष्ट',               price:100, category:'vegsnacks', diet:'veg', desc:'Crunchy masala-roasted chickpeas', img:'img/chana-roast.jpg' },
+    { id:'vs14', name:'Chana Chilli',            marathi:'चना चिल्ली',              price:120, category:'vegsnacks', diet:'veg', desc:'Crispy chickpeas tossed in spicy chilli sauce', img:'img/chana-chilli.jpg' },
+    { id:'vs15', name:'Chana Fry',               marathi:'चना फ्राय',               price:100, category:'vegsnacks', diet:'veg', desc:'Garlic-spiced crunchy fried chana', img:'img/chana-fry.jpg' },
+    { id:'vs16', name:'Veg Hara Bhara Kabab',    marathi:'व्हेज हरामरा कबाब',      price:200, category:'vegsnacks', diet:'veg', desc:'Spinach, peas & potato pan-seared green kababs', img:'img/veg-hara-bhara-kabab.jpg' },
+    { id:'vs17', name:'Shevga Lapeta',           marathi:'शेवगा लपेटा',            price:150, category:'vegsnacks', diet:'veg', desc:'Drumsticks coated in rich thick spicy masala', img:'img/shevga-lapeta.jpg' },
+    { id:'vs18', name:'Shevga Fry',              marathi:'शेवगा फ्राय',             price:150, category:'vegsnacks', diet:'veg', desc:'Masala-tossed crispy drumstick fry', img:'img/shevga-fry.jpg' },
+    { id:'vs19', name:'Shevga Roast',            marathi:'शेवगा रोष्ट',             price:100, category:'vegsnacks', diet:'veg', desc:'Spiced roasted drumstick starter', img:'img/shevga-roast.jpg' },
+    { id:'vs20', name:'Gobi Fry',                marathi:'गोबी फ्राय',              price:120, category:'vegsnacks', diet:'veg', desc:'Crispy spiced cauliflower florets fry', img:'img/gobi-fry.jpg' },
+    { id:'vs21', name:'Gobi Manchurian',         marathi:'गोबी मंच्युरन',           price:130, category:'vegsnacks', diet:'veg', desc:'Classic Indo-Chinese gobi manchurian', img:'img/gobi-manchurian.jpg' },
+    { id:'vs22', name:'Gobi 65',                 marathi:'गोबी ६५',                price:150, category:'vegsnacks', diet:'veg', desc:'Spicy crispy cauliflower 65', img:'img/gobi-65.jpg' },
+    { id:'vs23', name:'Gobi Roast',              marathi:'गोबी रोष्ट',              price:120, category:'vegsnacks', diet:'veg', desc:'Tawa-roasted masala cauliflower', img:'img/gobi-roast.jpg' },
+    { id:'vs24', name:'Matki Fry',               marathi:'मटकी फ्राय',              price:80,  category:'vegsnacks', diet:'veg', desc:'Spiced sprouted moth beans fry', img:'img/matki-fry.jpg' },
+    { id:'vs25', name:'Matki Namkeen',           marathi:'मटकी नमकिन',             price:80,  category:'vegsnacks', diet:'veg', desc:'Tangy onion-tomato sprouted matki chaat', img:'img/matki-namkeen.jpg' },
+    { id:'vs26', name:'Baby Corn Fry / Chilli',  marathi:'बेबी कॉर्न फ्राय / चिल्ली',price:200, category:'vegsnacks', diet:'veg', desc:'Crispy baby corn tossed in spicy chilli sauce', img:'img/baby-corn-chilli.jpg' },
+    { id:'vs27', name:'Matki Pakoda',            marathi:'मटकी पकोडा',             price:120, category:'vegsnacks', diet:'veg', desc:'Crispy spiced matki fritters', img:'img/matki-pakoda.jpg' },
+    { id:'vs28', name:'Aloo Pakoda',             marathi:'आलु पकोडा',              price:80,  category:'vegsnacks', diet:'veg', desc:'Golden crisp potato bhajiya pakodas', img:'img/aloo-pakoda.jpg' },
+    { id:'vs29', name:'Kanda Pakoda',            marathi:'कांदा पकोडा',             price:80,  category:'vegsnacks', diet:'veg', desc:'Crunchy Maharashtrian onion kanda bhaji', img:'img/kanda-pakoda.jpg' },
+    { id:'vs30', name:'Mix Pakoda',              marathi:'मिक्स पकोडा',             price:100, category:'vegsnacks', diet:'veg', desc:'Assorted crispy vegetable pakoda platter', img:'img/mix-pakoda.jpg' },
+    { id:'vs31', name:'Aloo Tikka',              marathi:'आलु टिक्का',              price:100, category:'vegsnacks', diet:'veg', desc:'Tandoor-roasted spiced baby potatoes', img:'img/aloo-tikka.jpg' },
+    { id:'vs32', name:'Aloo Chilli / 65',        marathi:'आलु चिल्ली/६५',           price:130, category:'vegsnacks', diet:'veg', desc:'Crispy potato fingers in spicy chilli/65 glaze', img:'img/aloo-chilli.jpg' },
+    { id:'vs33', name:'Green Peas Fry',          marathi:'ग्रिनपिस फ्राय',           price:120, category:'vegsnacks', diet:'veg', desc:'Spicy garlic-tossed green peas starter', img:'img/green-peas-fry.jpg' },
+    { id:'vs34', name:'Green Peas Roast',        marathi:'ग्रिनपिस रोष्ट',           price:120, category:'vegsnacks', diet:'veg', desc:'Masala roasted green peas', img:'img/green-peas-roast.jpg' },
+    { id:'vs35', name:'Mushroom Fry',            marathi:'मशरुम फ्राय',             price:200, category:'vegsnacks', diet:'veg', desc:'Pepper & garlic tossed crispy mushroom fry', img:'img/mushroom-fry.jpg' },
+    { id:'vs36', name:'Mushroom Roast',          marathi:'मशरुम रोष्ट',             price:200, category:'vegsnacks', diet:'veg', desc:'Spiced tawa-roasted button mushrooms', img:'img/mushroom-roast.jpg' },
+    { id:'vs37', name:'Mushroom 65',             marathi:'मशरुम ६५',                price:200, category:'vegsnacks', diet:'veg', desc:'Crunchy spicy mushroom 65 starter', img:'img/mushroom-65.jpg' },
+    { id:'vs38', name:'Lasun Roast',             marathi:'लसुन रोष्ट',              price:130, category:'vegsnacks', diet:'veg', desc:'Crunchy spicy roasted garlic pods', img:'img/lasun-roast.jpg' },
+    { id:'vs39', name:'Lasun Chilli',            marathi:'लसुन चिल्ली',             price:150, category:'vegsnacks', diet:'veg', desc:'Crispy garlic pods tossed in chilli sauce', img:'img/lasun-chilli.jpg' },
+    { id:'vs40', name:'Paneer Diamond Chilli',   marathi:'पनीर डायमंड चिल्ली',      price:250, category:'vegsnacks', diet:'veg', desc:'Diamond-cut crispy paneer in chef’s special chilli sauce', img:'img/paneer-diamond-chilli.jpg' },
+    { id:'vs41', name:'Paneer Ball Chilli',      marathi:'पनीर बॉल चिल्ली',         price:250, category:'vegsnacks', diet:'veg', desc:'Crispy cheese-paneer balls in spicy chilli glaze', img:'img/paneer-ball-chilli.jpg' },
+    { id:'vs42', name:'Veg China Corn',          marathi:'व्हेज चायना कॉर्न',        price:250, category:'vegsnacks', diet:'veg', desc:'Crispy sweet corn & veggies in Chinese seasoning', img:'img/veg-china-corn.jpg' },
+    { id:'vs43', name:'Veg Green Ball',          marathi:'व्हेज ग्रिन बॉल',          price:250, category:'vegsnacks', diet:'veg', desc:'Crispy herb & spinach veg balls starter', img:'img/veg-green-ball.jpg' },
+    { id:'vs44', name:'Shengdana Pakoda',        marathi:'शेंगदाणा पकोडा',          price:100, category:'vegsnacks', diet:'veg', desc:'Crunchy masala-coated peanut pakodas', img:'img/shengdana-pakoda.jpg' },
+    { id:'vs45', name:'Shengdana Fry',           marathi:'शेंगदाणा फ्राय',           price:100, category:'vegsnacks', diet:'veg', desc:'Crisp fried peanuts tossed with salt & chilli', img:'img/shengdana-fry.jpg' },
+    { id:'vs46', name:'Shengdana Masala Fry',    marathi:'शेंगदाणा मसाला फ्राय',     price:80,  category:'vegsnacks', diet:'veg', desc:'Peanuts tossed with onion, tomato, lemon & chaat masala', img:'img/shengdana-masala-fry.jpg' },
+    { id:'vs47', name:'Shengdana Boil',          marathi:'शेंगदाणा बॉईल',           price:80,  category:'vegsnacks', diet:'veg', desc:'Salted steamed peanuts', img:'img/shengdana-boil.jpg' },
+    { id:'vs48', name:'Shengdana Tawa',          marathi:'शेंगदाणा तवा',             price:100, category:'vegsnacks', diet:'veg', desc:'Spicy tawa-tossed masala peanuts', img:'img/shengdana-tawa.jpg' },
+    { id:'vs49', name:'Shev Matki Fry',          marathi:'शेव मटकी फ्राय',          price:100, category:'vegsnacks', diet:'veg', desc:'Spiced matki fry topped with crunchy farsan shev', img:'img/shev-matki-fry.jpg' },
+    { id:'vs50', name:'Paneer Lapeta',           marathi:'पनीर लपेटा',              price:160, category:'vegsnacks', diet:'veg', desc:'Paneer strips coated in thick spicy masala', img:'img/paneer-lapeta.jpg' },
+    { id:'vs51', name:'Soyabean Lapeta',         marathi:'सोयाबिन लपेटा',           price:130, category:'vegsnacks', diet:'veg', desc:'Soya chunks wrapped in rich spicy masala', img:'img/soyabean-lapeta.jpg' },
+    { id:'vs52', name:'Gobi Lapeta',             marathi:'गोबी लपेटा',              price:160, category:'vegsnacks', diet:'veg', desc:'Crispy gobi tossed in thick semi-dry masala', img:'img/gobi-lapeta.jpg' },
+    { id:'vs53', name:'Bhendi Chilli',           marathi:'भेंडी चिल्ली',             price:140, category:'vegsnacks', diet:'veg', desc:'Crispy fried okra tossed in spicy chilli masala', img:'img/bhendi-chilli.jpg' },
+
+    // --- 5. VEG SPECIAL MAIN COURSE ---
+    { id:'vm1',  name:'Methi Masala',            marathi:'मेथी मसाला',              price:100, category:'vegspecial', diet:'veg', desc:'Fresh fenugreek leaves cooked in spiced onion-tomato gravy', img:'img/methi-masala.jpg' },
+    { id:'vm2',  name:'Methi Fry',               marathi:'मेथी फ्राय',               price:100, category:'vegspecial', diet:'veg', desc:'Garlic-tempered fresh methi sabzi fry', img:'img/methi-fry.jpg' },
+    { id:'vm3',  name:'Aloo Methi',              marathi:'आलु मेथी',                price:90,  category:'vegspecial', diet:'veg', desc:'Classic potato & fresh fenugreek stir-fry', img:'img/aloo-methi.jpg' },
+    { id:'vm4',  name:'Methi Malai',             marathi:'मेथी मलाई',               price:110, category:'vegspecial', diet:'veg', desc:'Creamy & mildly sweet fenugreek curry', img:'img/methi-malai.jpg' },
+    { id:'vm5',  name:'Lasun Methi',             marathi:'लसुण मेथी',               price:130, category:'vegspecial', diet:'veg', desc:'Restaurant-special roasted garlic & methi curry', img:'img/lasun-methi.jpg' },
+    { id:'vm6',  name:'Methi Fry Masala',        marathi:'मेथी फ्राय मसाला',         price:140, category:'vegspecial', diet:'veg', desc:'Rich spicy garlic-tadka methi masala', img:'img/methi-fry-masala.jpg' },
+    { id:'vm7',  name:'Shev Bhaji',              marathi:'शेव भाजी',                price:80,  category:'vegspecial', diet:'veg', desc:'Spicy Khandeshi/Maharashtrian rassa topped with crisp shev', img:'img/shev-bhaji.jpg' },
+    { id:'vm8',  name:'Dudh Shevbhaji',          marathi:'दुध शेवभाजी',             price:100, category:'vegspecial', diet:'veg', desc:'Rich milk-based mild & creamy shev bhaji', img:'img/dudh-shevbhaji.jpg' },
+    { id:'vm9',  name:'Gobi Masala',             marathi:'गोबी मसाला',              price:90,  category:'vegspecial', diet:'veg', desc:'Cauliflower florets in homestyle spiced gravy', img:'img/gobi-masala.jpg' },
+    { id:'vm10', name:'Aloo Gobi Masala',        marathi:'आलु गोबी मसाला',          price:100, category:'vegspecial', diet:'veg', desc:'Potato & cauliflower cooked in aromatic masala', img:'img/aloo-gobi-masala.jpg' },
+    { id:'vm11', name:'Matar Gobi Masala',       marathi:'मटर गोबी मसाला',          price:100, category:'vegspecial', diet:'veg', desc:'Green peas & cauliflower masala curry', img:'img/matar-gobi-masala.jpg' },
+    { id:'vm12', name:'Gobi Makhanwala',         marathi:'गोबी मख्खणवाला',          price:130, category:'vegspecial', diet:'veg', desc:'Cauliflower simmered in rich buttery tomato gravy', img:'img/gobi-makhanwala.jpg' },
+    { id:'vm13', name:'Green Peas Masala',       marathi:'ग्रीनपीस मसाला',          price:80,  category:'vegspecial', diet:'veg', desc:'Green peas in flavorful onion-tomato gravy', img:'img/green-peas-masala.jpg' },
+    { id:'vm14', name:'Aloo Matar Masala',       marathi:'आलु मटर मसाला',           price:100, category:'vegspecial', diet:'veg', desc:'Classic potato & green peas curry', img:'img/aloo-matar-masala.jpg' },
+    { id:'vm15', name:'Veg Jaipuri',             marathi:'व्हेज जयपुरी',             price:250, category:'vegspecial', diet:'veg', desc:'Royal Rajasthani mixed veg curry with roasted papad', img:'img/veg-jaipuri.jpg' },
+    { id:'vm16', name:'Veg Do Pyaza',            marathi:'व्हेज दालपाजी',            price:150, category:'vegspecial', diet:'veg', desc:'Mixed vegetables cooked with crunchy double onions', img:'img/veg-do-pyaza.jpg' },
+    { id:'vm17', name:'Soyabean Masala',         marathi:'सोयाबिन मसाला',           price:90,  category:'vegspecial', diet:'veg', desc:'Protein-rich soya chunks in spicy gravy', img:'img/soyabean-masala.jpg' },
+    { id:'vm18', name:'Kaju Masala',             marathi:'काजु मसाला',              price:180, category:'vegspecial', diet:'veg', desc:'Roasted cashews in rich, creamy spicy masala', img:'img/kaju-masala.jpg' },
+    { id:'vm19', name:'Kaju Masala Handi',       marathi:'काजु मसाला हंडी',         price:1200,category:'vegspecial', diet:'veg', desc:'Grand family-size handi of royal kaju masala', img:'img/kaju-masala-handi.jpg' },
+    { id:'vm20', name:'Mix Veg',                 marathi:'मिक्स व्हेज',              price:130, category:'vegspecial', diet:'veg', desc:'Assorted garden vegetables in medium-spiced gravy', img:'img/mix-veg.jpg' },
+    { id:'vm21', name:'Bhendi Masala',           marathi:'भेंडी मसाला',             price:90,  category:'vegspecial', diet:'veg', desc:'Okra cooked with onions, tomatoes & spices', img:'img/bhendi-masala.jpg' },
+    { id:'vm22', name:'Bhendi Fry',              marathi:'भेंडी फ्राय',              price:100, category:'vegspecial', diet:'veg', desc:'Crisp tawa-fried spiced ladies finger', img:'img/bhendi-fry.jpg' },
+    { id:'vm23', name:'Shimla Masala',           marathi:'शिमला मसाला',             price:80,  category:'vegspecial', diet:'veg', desc:'Capsicum cooked in roasted peanut-onion masala', img:'img/shimla-masala.jpg' },
+    { id:'vm24', name:'Baingan Masala',          marathi:'बैंगन मसाला',             price:80,  category:'vegspecial', diet:'veg', desc:'Stuffed baby brinjals in Maharashtrian masala', img:'img/baingan-masala.jpg' },
+    { id:'vm25', name:'Baingan Bharta',          marathi:'बैंगन भरता',              price:120, category:'vegspecial', diet:'veg', desc:'Smoky flame-roasted mashed brinjal bharit', img:'img/baingan-bharta.jpg' },
+    { id:'vm26', name:'Tomato Masala',           marathi:'टोमॅटो मसाला',            price:80,  category:'vegspecial', diet:'veg', desc:'Tangy & spicy tomato masala curry', img:'img/tomato-masala.jpg' },
+    { id:'vm27', name:'Tomato Chutney',          marathi:'टोमॅटो चटणी',             price:100, category:'vegspecial', diet:'veg', desc:'Homestyle spiced tomato chutney sabzi', img:'img/tomato-chutney.jpg' },
+    { id:'vm28', name:'Stuff Shimla Masala',     marathi:'स्टाफ शिमला मसाला',       price:100, category:'vegspecial', diet:'veg', desc:'Masala-stuffed capsicum in rich gravy', img:'img/stuff-shimla-masala.jpg' },
+    { id:'vm29', name:'Karela Masala',           marathi:'करेला मसाला',             price:100, category:'vegspecial', diet:'veg', desc:'Spiced bitter gourd cooked in tangy masala', img:'img/karela-masala.jpg' },
+    { id:'vm30', name:'Karela Fry',              marathi:'करेला फ्राय',              price:100, category:'vegspecial', diet:'veg', desc:'Crisp shallow-fried spiced karela rings', img:'img/karela-fry.jpg' },
+    { id:'vm31', name:'Bhopla Masala',           marathi:'भोपला मसाला',             price:90,  category:'vegspecial', diet:'veg', desc:'Sweet & spicy red pumpkin Maharashtrian sabzi', img:'img/bhopla-masala.jpg' },
+    { id:'vm32', name:'Matki Masala',            marathi:'मटकी मसाला',              price:80,  category:'vegspecial', diet:'veg', desc:'Sprouted moth beans in traditional gravy', img:'img/matki-masala.jpg' },
+    { id:'vm33', name:'Aloo Matki',              marathi:'आलु मटकी',                price:100, category:'vegspecial', diet:'veg', desc:'Potato & sprouted matki homestyle curry', img:'img/aloo-matki.jpg' },
+    { id:'vm34', name:'Methi Matki',             marathi:'मेथी मटकी',               price:100, category:'vegspecial', diet:'veg', desc:'Fresh methi & sprouted matki sabzi', img:'img/methi-matki.jpg' },
+    { id:'vm35', name:'Shevga Matki',            marathi:'शेवगा मटकी',              price:120, category:'vegspecial', diet:'veg', desc:'Drumsticks & sprouted matki in spicy rassa', img:'img/shevga-matki.jpg' },
+    { id:'vm36', name:'Dal Tadka',               marathi:'दाल तडका',                price:110, category:'vegspecial', diet:'veg', desc:'Yellow lentils tempered with ghee, cumin & red chillies', img:'img/dal-tadka.jpg' },
+    { id:'vm37', name:'Jeera Dal',               marathi:'जिरा दाल',                price:120, category:'vegspecial', diet:'veg', desc:'Aromatic cumin-tempered yellow dal fry', img:'img/jeera-dal.jpg' },
+
+    // --- 6. PANEER, PALAK & HOUSE SPECIALS ---
+    { id:'pn1',  name:'Paneer Masala',           marathi:'पनीर मसाला',              price:150, category:'paneer', diet:'veg', desc:'Soft paneer cubes in classic spiced onion-tomato gravy', img:'img/paneer-masala.jpg' },
+    { id:'pn2',  name:'Paneer Butter Masala',    marathi:'पनीर बटर मसाला',          price:160, category:'paneer', diet:'veg', desc:'Rich, creamy & buttery tomato-cashew paneer gravy', img:'img/paneer-butter-masala.jpg' },
+    { id:'pn3',  name:'Paneer Tikka Masala',     marathi:'पनीर टिक्का मसाला',       price:180, category:'paneer', diet:'veg', desc:'Char-grilled paneer tikka simmered in smoky gravy', img:'img/paneer-tikka-masala.jpg' },
+    { id:'pn4',  name:'Paneer Kolhapuri',        marathi:'पनीर कोल्हापुरी',         price:180, category:'paneer', diet:'veg', desc:'Fiery & bold Kolhapuri masala paneer curry', img:'img/paneer-kolhapuri.jpg' },
+    { id:'pn5',  name:'Paneer Handi',            marathi:'पनीर हंडी',               price:200, category:'paneer', diet:'veg', desc:'Slow-cooked clay-pot style rich paneer handi', img:'img/paneer-handi.jpg' },
+    { id:'pn6',  name:'Paneer Bhurji',           marathi:'पनीर भुर्जी',             price:190, category:'paneer', diet:'veg', desc:'Spiced scrambled cottage cheese with onions & tomatoes', img:'img/paneer-bhurji.jpg' },
+    { id:'pn7',  name:'Palak Paneer',            marathi:'पालक पनीर',               price:150, category:'paneer', diet:'veg', desc:'Fresh spinach puree cooked with soft paneer cubes', img:'img/palak-paneer.jpg' },
+    { id:'pn8',  name:'Paneer Matar',            marathi:'पनीर मटर',                price:150, category:'paneer', diet:'veg', desc:'Green peas & cottage cheese in homestyle gravy', img:'img/paneer-matar.jpg' },
+    { id:'pn9',  name:'Paneer Tawa',             marathi:'पनीर तवा',                price:200, category:'paneer', diet:'veg', desc:'Semi-dry tawa-seared paneer with bell peppers', img:'img/paneer-tawa.jpg' },
+    { id:'pn10', name:'Paneer Mughlai',          marathi:'पनीर मुघलाई',             price:150, category:'paneer', diet:'veg', desc:'Royal mildly spiced creamy Mughlai paneer', img:'img/paneer-mughlai.jpg' },
+    { id:'pn11', name:'Paneer Korma',            marathi:'पनीर कोर्मा',             price:200, category:'paneer', diet:'veg', desc:'Rich nutty & aromatic paneer korma', img:'img/paneer-korma.jpg' },
+    { id:'pn12', name:'Paneer Angara',           marathi:'पनीर अंगारा',             price:230, category:'paneer', diet:'veg', desc:'Smoky charcoal-infused spicy red paneer gravy', img:'img/paneer-angara.jpg' },
+    { id:'pn13', name:'Paneer Lababdar',         marathi:'पनीर लाजबाब',             price:230, category:'paneer', diet:'veg', desc:'Velvety grated & cubed paneer in rich tomato-cream gravy', img:'img/paneer-lababdar.jpg' },
+    { id:'pn14', name:'Paneer Chatpata',         marathi:'पनीर चटपटा',             price:230, category:'paneer', diet:'veg', desc:'Tangy & zesty spiced paneer delicacy', img:'img/paneer-chatpata.jpg' },
+    { id:'pn15', name:'Paneer Kaju Masala',      marathi:'पनीर काजु मसाला',         price:200, category:'paneer', diet:'veg', desc:'Cottage cheese & roasted cashews in rich gravy', img:'img/paneer-kaju-masala.jpg' },
+    { id:'pn16', name:'Paneer Mushroom',         marathi:'पनीर मशरुम',              price:200, category:'paneer', diet:'veg', desc:'Tender mushrooms & paneer in spiced masala', img:'img/paneer-mushroom.jpg' },
+    { id:'pn17', name:'Paneer Ball Veer',        marathi:'पनीर बॉल विर',            price:250, category:'paneer', diet:'veg', desc:'Stuffed paneer kofta balls in chef’s special gravy', img:'img/paneer-ball-veer.jpg' },
+    { id:'pn18', name:'Paneer Toofani',          marathi:'पनीर तुफानी',             price:250, category:'paneer', diet:'veg', desc:'Bold, fiery & rich spicy paneer specialty', img:'img/paneer-toofani.jpg' },
+    { id:'pn19', name:'Paneer Diamond',          marathi:'पनीर डायमंड',             price:250, category:'paneer', diet:'veg', desc:'Diamond-cut paneer in royal velvety gravy', img:'img/paneer-diamond.jpg' },
+    { id:'pn20', name:'Paneer Diwani Handi',     marathi:'पनीर दिवाणी हंडी',        price:230, category:'paneer', diet:'veg', desc:'Paneer & exotic vegetables in rich handi gravy', img:'img/paneer-diwani-handi.jpg' },
+    { id:'pn21', name:'Paneer Do Pyaza',         marathi:'पनीर दोप्याजी',           price:200, category:'paneer', diet:'veg', desc:'Paneer cooked with double-layered crunchy onions', img:'img/paneer-do-pyaza.jpg' },
+    { id:'pn22', name:'Paneer Rajarani',         marathi:'पनीर राजारानी',           price:250, category:'paneer', diet:'veg', desc:'Dual-gravy royal paneer platter', img:'img/paneer-rajarani.jpg' },
+    { id:'pn23', name:'Plain Palak',             marathi:'प्लेन पालक',              price:90,  category:'paneer', diet:'veg', desc:'Garlic-tempered smooth spinach curry', img:'img/plain-palak.jpg' },
+    { id:'pn24', name:'Mushroom Palak',          marathi:'मशरुम पालक',              price:110, category:'paneer', diet:'veg', desc:'Button mushrooms simmered in spiced spinach gravy', img:'img/mushroom-palak.jpg' },
+    { id:'pn25', name:'Aloo Palak',              marathi:'आलु पालक',                price:100, category:'paneer', diet:'veg', desc:'Diced potatoes cooked with fresh spinach', img:'img/aloo-palak.jpg' },
+    { id:'pn26', name:'Methi Palak Malai',       marathi:'मेथी पालक मलाई',          price:130, category:'paneer', diet:'veg', desc:'Creamy blend of fenugreek & spinach leaves', img:'img/methi-palak-malai.jpg' },
+    { id:'pn27', name:'Rani Palak',              marathi:'राणी पालक',               price:230, category:'paneer', diet:'veg', desc:'Royal rich spinach & paneer/kofta delicacy', img:'img/rani-palak.jpg' },
+    { id:'pn28', name:'Shevga Masala',           marathi:'शेवगा मसाला',             price:100, category:'paneer', diet:'veg', desc:'Tender drumsticks in spicy Maharashtrian masala', img:'img/shevga-masala.jpg' },
+    { id:'pn29', name:'Shevga Handi (Half)',     marathi:'शेवगा हंडी (हाफ)',        price:250, category:'paneer', diet:'veg', desc:'Rich spiced drumstick handi (Half portion)', img:'img/shevga-handi-half.jpg' },
+    { id:'pn30', name:'Shevga Handi (Full)',     marathi:'शेवगा हंडी (फुल)',        price:400, category:'paneer', diet:'veg', desc:'Rich spiced drumstick handi (Full portion)', img:'img/shevga-handi-full.jpg' },
+    { id:'pn31', name:'Shevga Aloo',             marathi:'शेवगा आलु',               price:100, category:'paneer', diet:'veg', desc:'Drumsticks & potatoes in homestyle gravy', img:'img/shevga-aloo.jpg' },
+    { id:'pn32', name:'Veg Tiranga',             marathi:'व्हेज तिरंगा',             price:300, category:'paneer', diet:'veg', desc:'Three-layered tricolor royal veg specialty', img:'img/veg-tiranga.jpg' },
+    { id:'pn33', name:'Hotel Gaurav Special',    marathi:'हॉटेल गौरव स्पेशल',       price:510, category:'paneer', diet:'veg', desc:'Chef’s signature grand royal vegetarian feast', img:'img/hotel-gaurav-special.jpg' },
+
+    // --- 7. NON-VEG SNACKS, KEBAB, MUTTON & FISH STARTERS ---
+    { id:'ns1',  name:'Anda Boil',               marathi:'अंडा बॉईल',               price:30,  category:'nonvegsnacks', diet:'nonveg', desc:'2 boiled eggs served with masala & onion', img:'img/anda-boil.jpg' },
+    { id:'ns2',  name:'Boil Fry',                marathi:'बॉईल फ्राय',               price:40,  category:'nonvegsnacks', diet:'nonveg', desc:'Tawa-fried spiced boiled eggs', img:'img/boil-fry.jpg' },
+    { id:'ns3',  name:'Anda Omelette',           marathi:'अंडा आम्लेट',             price:70,  category:'nonvegsnacks', diet:'nonveg', desc:'Fluffy masala omelette with onions & chillies', img:'img/anda-omelette.jpg' },
+    { id:'ns4',  name:'Anda Half Fry / Roast',   marathi:'अंडा हाप फ्राय / रोष्ट',   price:80,  category:'nonvegsnacks', diet:'nonveg', desc:'Sunny-side up / spiced roasted eggs', img:'img/anda-half-fry.jpg' },
+    { id:'ns5',  name:'Anda Bhurji / Chilli',    marathi:'अंडा भुर्जी / चिल्ली',     price:80,  category:'nonvegsnacks', diet:'nonveg', desc:'Spicy street-style scrambled eggs / chilli egg', img:'img/anda-bhurji.jpg' },
+    { id:'ns6',  name:'Anda 65',                 marathi:'अंडा ६५',                price:80,  category:'nonvegsnacks', diet:'nonveg', desc:'Crispy spicy fried egg 65', img:'img/anda-65.jpg' },
+    { id:'ns7',  name:'Anda Boil Bhurji',        marathi:'अंडा बॉईल भुर्जी',        price:80,  category:'nonvegsnacks', diet:'nonveg', desc:'Grated boiled eggs tossed in spicy onion-tomato masala', img:'img/anda-boil-bhurji.jpg' },
+    { id:'ns8',  name:'Anda 96 Chilli (3 Pcs)',  marathi:'अंडा ९६ चिल्ली (३ नग)',   price:100, category:'nonvegsnacks', diet:'nonveg', desc:'3 eggs tossed in fiery 96 chilli sauce', img:'img/anda-96-chilli.jpg' },
+    { id:'ns9',  name:'Tandoori Chicken',        marathi:'तंदुरी चिकन',             price:700, category:'nonvegsnacks', diet:'nonveg', desc:'Whole chicken marinated in yogurt & spices, roasted in tandoor', img:'img/tandoori-chicken.jpg' },
+    { id:'ns10', name:'Chicken Tikka',           marathi:'चिकन टिक्का',             price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Juicy char-grilled boneless chicken tikka skewers', img:'img/chicken-tikka.jpg' },
+    { id:'ns11', name:'Chicken Pahadi Kabab',    marathi:'चिकन पहाडी कबाब',         price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Fresh mint & coriander marinated green chicken kabab', img:'img/chicken-pahadi-kabab.jpg' },
+    { id:'ns12', name:'Chicken Leg Kabab (2 Pcs)',marathi:'चिकन लेग कबाब (२ नग)',  price:150, category:'nonvegsnacks', diet:'nonveg', desc:'2 smoky tandoor-roasted chicken drumsticks', img:'img/chicken-leg-kabab.jpg' },
+    { id:'ns13', name:'Chicken Level Kabab',     marathi:'चिकन लेव्हल कबाब',        price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Chef’s signature spiced tandoori chicken kabab', img:'img/chicken-level-kabab.jpg' },
+    { id:'ns14', name:'Chicken Chilli (7 Pcs)',  marathi:'चिकन चिल्ली (७ नग)',      price:150, category:'nonvegsnacks', diet:'nonveg', desc:'7 pcs crispy chicken tossed in Indo-Chinese chilli sauce', img:'img/chicken-chilli.jpg' },
+    { id:'ns15', name:'Chicken Roast (7 Pcs)',   marathi:'चिकन रोष्ट (७ नग)',       price:140, category:'nonvegsnacks', diet:'nonveg', desc:'7 pcs spicy masala-roasted chicken', img:'img/chicken-roast.jpg' },
+    { id:'ns16', name:'Chicken Lollipop',        marathi:'चिकन लॉलीपॉप',            price:180, category:'nonvegsnacks', diet:'nonveg', desc:'Crispy fried chicken winglets served with schezwan sauce', img:'img/chicken-lollipop.jpg' },
+    { id:'ns17', name:'Chicken 65',              marathi:'चिकन ६५',                price:150, category:'nonvegsnacks', diet:'nonveg', desc:'Fiery & crispy South-Indian style chicken 65', img:'img/chicken-65.jpg' },
+    { id:'ns18', name:'Chicken 96 Chilli',       marathi:'चिकन ९६ चिल्ली',          price:150, category:'nonvegsnacks', diet:'nonveg', desc:'Extra-spicy 96 masala chilli chicken starter', img:'img/chicken-96-chilli.jpg' },
+    { id:'ns19', name:'Chicken With Corn Chilli',marathi:'चिकन विथकॉन चिल्ली',     price:160, category:'nonvegsnacks', diet:'nonveg', desc:'Crispy chicken & sweet corn tossed in chilli sauce', img:'img/chicken-corn-chilli.jpg' },
+    { id:'ns20', name:'Chicken Fry',             marathi:'चिकन फ्राय',              price:140, category:'nonvegsnacks', diet:'nonveg', desc:'Traditional Maharashtrian spiced dry chicken fry', img:'img/chicken-fry.jpg' },
+    { id:'ns21', name:'Chicken Lapeta Boneless', marathi:'चिकन लपेटा बोनलेस',      price:160, category:'nonvegsnacks', diet:'nonveg', desc:'Boneless chicken wrapped in thick spicy masala', img:'img/chicken-lapeta-boneless.jpg' },
+    { id:'ns22', name:'Chicken With Corn Lapeta',marathi:'चिकन विथ कॉर्न लपेटा',  price:150, category:'nonvegsnacks', diet:'nonveg', desc:'Chicken & sweet corn coated in rich dry masala', img:'img/chicken-corn-lapeta.jpg' },
+    { id:'ns23', name:'Chicken Diamond Chilli',  marathi:'चिकन डायमंड चिल्ली',      price:250, category:'nonvegsnacks', diet:'nonveg', desc:'Diamond-cut crispy chicken in special chilli glaze', img:'img/chicken-diamond-chilli.jpg' },
+    { id:'ns24', name:'Chicken China Town',      marathi:'चिकन चायना टॉन',          price:450, category:'nonvegsnacks', diet:'nonveg', desc:'Grand Indo-Chinese crispy chicken starter platter', img:'img/chicken-china-town.jpg' },
+    { id:'ns25', name:'Chicken Leg Roast (2 Pcs)',marathi:'चिकन लेग रोष्ट (२ नग)', price:160, category:'nonvegsnacks', diet:'nonveg', desc:'2 spicy masala-roasted chicken drumsticks', img:'img/chicken-leg-roast.jpg' },
+    { id:'ns26', name:'Chicken Fighter Roast',   marathi:'चिकन फायटर रोष्ट',        price:300, category:'nonvegsnacks', diet:'nonveg', desc:'Fiery full-flavor roasted chicken delicacy', img:'img/chicken-fighter-roast.jpg' },
+    { id:'ns27', name:'Mutton Roast',            marathi:'मटन रोष्ट',               price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Tender mutton pieces roasted with black pepper & spices', img:'img/mutton-roast.jpg' },
+    { id:'ns28', name:'Mutton 65',               marathi:'मटन ६५',                 price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Crispy spiced boneless/bone-in mutton 65', img:'img/mutton-65.jpg' },
+    { id:'ns29', name:'Mutton Lapeta',           marathi:'मटन लपेटा',               price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Succulent mutton coated in thick onion-garlic masala', img:'img/mutton-lapeta.jpg' },
+    { id:'ns30', name:'Mutton Fry',              marathi:'मटन फ्राय',               price:200, category:'nonvegsnacks', diet:'nonveg', desc:'Authentic Maharashtrian spicy dry mutton fry', img:'img/mutton-fry.jpg' },
+    { id:'ns31', name:'Fish Roast / Rava Roast', marathi:'फिश रोष्ट / रवा रोष्ट',   price:150, category:'nonvegsnacks', diet:'nonveg', desc:'Crispy semolina-crusted pan-roasted fish', img:'img/fish-roast.jpg' },
+    { id:'ns32', name:'Fish Fry / Tikka',        marathi:'फिश फ्राय / टिक्का',      price:150, category:'nonvegsnacks', diet:'nonveg', desc:'Golden crisp coastal masala fish fry / tikka', img:'img/fish-fry.jpg' },
+    { id:'ns33', name:'Fish Lapeta',             marathi:'फिश लपेटा',               price:170, category:'nonvegsnacks', diet:'nonveg', desc:'Fish pieces coated in thick spicy coastal masala', img:'img/fish-lapeta.jpg' },
+    { id:'ns34', name:'Fish Tawa',               marathi:'फिश तवा',                 price:170, category:'nonvegsnacks', diet:'nonveg', desc:'Tawa-seared fish fillets with red chilli & garlic', img:'img/fish-tawa.jpg' },
+
+    // --- 8. NON-VEG SPECIAL MAIN COURSE ---
+    { id:'nv1',  name:'Chicken Diwani Handi',    marathi:'चिकन दिवाणी हंडी',        price:700,  category:'nonvegspecial', diet:'nonveg', desc:'Royal rich & creamy chicken handi with exotic spices', img:'img/chicken-diwani-handi.jpg' },
+    { id:'nv2',  name:'Chicken Handi',           marathi:'चिकन हंडी',               price:700,  category:'nonvegspecial', diet:'nonveg', desc:'Traditional slow-cooked clay-pot chicken handi', img:'img/chicken-handi.jpg' },
+    { id:'nv3',  name:'Chicken Butter Handi',    marathi:'चिकन बटर हंडी',           price:750,  category:'nonvegspecial', diet:'nonveg', desc:'Velvety butter-rich tomato & cashew chicken handi', img:'img/chicken-butter-handi.jpg' },
+    { id:'nv4',  name:'Chicken Kheema Handi',    marathi:'चिकन खीमा हंडी',          price:750,  category:'nonvegspecial', diet:'nonveg', desc:'Minced chicken & chicken pieces slow-cooked in handi', img:'img/chicken-kheema-handi.jpg' },
+    { id:'nv5',  name:'Chicken Murga Handi',     marathi:'चिकन मुर्गा हंडी',        price:750,  category:'nonvegspecial', diet:'nonveg', desc:'Chef’s special full murga masala handi', img:'img/chicken-murga-handi.jpg' },
+    { id:'nv6',  name:'Chicken Roast Handi',     marathi:'चिकन रोष्ट हंडी',         price:750,  category:'nonvegspecial', diet:'nonveg', desc:'Roasted chicken pieces simmered in fiery handi gravy', img:'img/chicken-roast-handi.jpg' },
+    { id:'nv7',  name:'Chicken Malegaon Handi',  marathi:'चिकन मालेगांव हंडी',      price:700,  category:'nonvegspecial', diet:'nonveg', desc:'Authentic Khandeshi/Malegaon style spicy chicken handi', img:'img/chicken-malegaon-handi.jpg' },
+    { id:'nv8',  name:'Chicken Masala',          marathi:'चिकन मसाला',              price:150,  category:'nonvegspecial', diet:'nonveg', desc:'Classic homestyle spiced chicken gravy', img:'img/chicken-masala.jpg' },
+    { id:'nv9',  name:'Chicken Kheema Masala',   marathi:'चिकन खिमा मसाला',         price:180,  category:'nonvegspecial', diet:'nonveg', desc:'Spiced minced chicken masala', img:'img/chicken-kheema-masala.jpg' },
+    { id:'nv10', name:'Chicken Kolhapuri Masala',marathi:'चिकन कोल्हापुरी मसाला',   price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Fiery & bold Kolhapuri red-chilli chicken curry', img:'img/chicken-kolhapuri-masala.jpg' },
+    { id:'nv11', name:'Chicken Tawa Masala',     marathi:'चिकन तवा मसाला',          price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Semi-dry tawa-cooked spiced chicken masala', img:'img/chicken-tawa-masala.jpg' },
+    { id:'nv12', name:'Chicken Korma Masala',    marathi:'चिकन कोर्मा मसाला',       price:180,  category:'nonvegspecial', diet:'nonveg', desc:'Aromatic, rich & mildly spiced chicken korma', img:'img/chicken-korma-masala.jpg' },
+    { id:'nv13', name:'Chicken Chatpata Masala', marathi:'चिकन चटपटा मसाला',       price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Tangy & zesty spiced chicken curry', img:'img/chicken-chatpata-masala.jpg' },
+    { id:'nv14', name:'Chicken Angara Masala',   marathi:'चिकन अंगारा मसाला',       price:250,  category:'nonvegspecial', diet:'nonveg', desc:'Smoky charcoal-flavored spicy chicken gravy', img:'img/chicken-angara-masala.jpg' },
+    { id:'nv15', name:'Chicken Mughlai Masala',  marathi:'चिकन मुघलाई मसाला',       price:180,  category:'nonvegspecial', diet:'nonveg', desc:'Rich Mughlai style egg & cream-enriched chicken curry', img:'img/chicken-mughlai-masala.jpg' },
+    { id:'nv16', name:'Chicken Patiala',         marathi:'चिकन पटीयाला',            price:250,  category:'nonvegspecial', diet:'nonveg', desc:'Punjabi royal stuffed-omelette & rich chicken gravy', img:'img/chicken-patiala.jpg' },
+    { id:'nv17', name:'Chicken Diwani',          marathi:'चिकन दिवाणी',             price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Portion-size rich & creamy chicken diwani', img:'img/chicken-diwani.jpg' },
+    { id:'nv18', name:'Chicken Hong Kong Masala',marathi:'चिकन हाँगकाँग मसाला',     price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Indo-Chinese spiced Hong Kong style chicken gravy', img:'img/chicken-hong-kong-masala.jpg' },
+    { id:'nv19', name:'Chicken Singapuri Masala',marathi:'चिकन सिंगापुरी मसाला',    price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Zesty Singapore-style spiced chicken masala', img:'img/chicken-singapuri-masala.jpg' },
+    { id:'nv20', name:'Mutton Mughlai Masala',   marathi:'मटन मुघलाई मसाला',        price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Royal creamy Mughlai mutton gravy', img:'img/mutton-mughlai-masala.jpg' },
+    { id:'nv21', name:'Mutton Angara Masala',    marathi:'मटन अंगारा मसाला',        price:350,  category:'nonvegspecial', diet:'nonveg', desc:'Smoky dum-angara fiery mutton delicacy', img:'img/mutton-angara-masala.jpg' },
+    { id:'nv22', name:'Mutton Kofta Masala',     marathi:'मटन कोप्ता मसाला',        price:250,  category:'nonvegspecial', diet:'nonveg', desc:'Spiced minced mutton meatballs in rich gravy', img:'img/mutton-kofta-masala.jpg' },
+    { id:'nv23', name:'Mutton Tawa Masala',      marathi:'मटन तवा मसाला',           price:300,  category:'nonvegspecial', diet:'nonveg', desc:'Tawa-roasted tender mutton in thick masala', img:'img/mutton-tawa-masala.jpg' },
+    { id:'nv24', name:'Mutton Kolhapuri Masala', marathi:'मटन कोल्हापुरी मसाला',    price:250,  category:'nonvegspecial', diet:'nonveg', desc:'Fiery traditional Kolhapuri mutton curry', img:'img/mutton-kolhapuri-masala.jpg' },
+    { id:'nv25', name:'Mutton Masala',           marathi:'मटन मसाला',               price:200,  category:'nonvegspecial', diet:'nonveg', desc:'Classic slow-cooked homestyle mutton masala', img:'img/mutton-masala.jpg' },
+    { id:'nv26', name:'Mutton Handi',            marathi:'मटन हंडी',                price:1000, category:'nonvegspecial', diet:'nonveg', desc:'Grand family-size authentic Maharashtrian mutton handi', img:'img/mutton-handi.jpg' },
+    { id:'nv27', name:'Mutton Butter Handi',     marathi:'मटन बटर हंडी',            price:1000, category:'nonvegspecial', diet:'nonveg', desc:'Rich buttery gravy slow-cooked mutton handi', img:'img/mutton-butter-handi.jpg' },
+    { id:'nv28', name:'Mutton Boneless Handi',   marathi:'मटन बोनलेस हंडी',         price:1200, category:'nonvegspecial', diet:'nonveg', desc:'100% tender boneless mutton pieces in royal handi gravy', img:'img/mutton-boneless-handi.jpg' },
+    { id:'nv29', name:'Anda Mughlai Masala',     marathi:'अंडा मुघलाई मसाला',       price:130,  category:'nonvegspecial', diet:'nonveg', desc:'Boiled eggs in rich, creamy Mughlai gravy', img:'img/anda-mughlai-masala.jpg' },
+    { id:'nv30', name:'Anda Curry Masala',       marathi:'अंडा करी मसाला',          price:100,  category:'nonvegspecial', diet:'nonveg', desc:'Classic homestyle spiced egg curry', img:'img/anda-curry-masala.jpg' },
+
+    // --- 9. RICE SPECIAL & BIRYANI ---
+    { id:'rc1',  name:'Jeera Rice (Half)',          marathi:'जिरा राईस (हाफ)',         price:50,  category:'rice', diet:'veg',    desc:'Cumin-tempered fluffy basmati rice (Half)', img:'img/jeera-rice-half.jpg' },
+    { id:'rc2',  name:'Jeera Rice (Full)',          marathi:'जिरा राईस (फुल)',         price:100, category:'rice', diet:'veg',    desc:'Cumin-tempered fluffy basmati rice (Full)', img:'img/jeera-rice-full.jpg' },
+    { id:'rc3',  name:'Masala Rice',                marathi:'मसाला राईस',              price:120, category:'rice', diet:'veg',    desc:'Spiced Maharashtrian masale bhat', img:'img/masala-rice.jpg' },
+    { id:'rc4',  name:'Veg Fried Rice',             marathi:'व्हेज फ्राय राईस',         price:130, category:'rice', diet:'veg',    desc:'Wok-tossed Indo-Chinese vegetable fried rice', img:'img/veg-fried-rice.jpg' },
+    { id:'rc5',  name:'Paneer Fried Rice',          marathi:'पनीर फ्राय राईस',         price:150, category:'rice', diet:'veg',    desc:'Fried rice tossed with golden paneer cubes & veggies', img:'img/paneer-fried-rice.jpg' },
+    { id:'rc6',  name:'Lasun Jeera Rice',           marathi:'लसुण जीरा राईस',          price:120, category:'rice', diet:'veg',    desc:'Burnt garlic & cumin flavored basmati rice', img:'img/lasun-jeera-rice.jpg' },
+    { id:'rc7',  name:'Kaju Fried Rice',            marathi:'काजु फ्राय राईस',         price:200, category:'rice', diet:'veg',    desc:'Rich fried rice loaded with roasted cashews', img:'img/kaju-fried-rice.jpg' },
+    { id:'rc8',  name:'Garlic Fried Rice',          marathi:'गारलीक फ्राय राईस',       price:120, category:'rice', diet:'veg',    desc:'Aromatic garlic-infused Chinese fried rice', img:'img/garlic-fried-rice.jpg' },
+    { id:'rc9',  name:'Ginger Fried Rice',          marathi:'जिंजर फ्राय राईस',        price:100, category:'rice', diet:'veg',    desc:'Zesty ginger-flavored wok-tossed rice', img:'img/ginger-fried-rice.jpg' },
+    { id:'rc10', name:'Veg Schezwan Fried Rice',    marathi:'व्हेज शेजवान फ्राय राईस',  price:150, category:'rice', diet:'veg',    desc:'Fiery schezwan sauce vegetable fried rice', img:'img/veg-schezwan-fried-rice.jpg' },
+    { id:'rc11', name:'Chinese Pulao',              marathi:'चायनीज पुलाव',            price:150, category:'rice', diet:'veg',    desc:'Fusion spiced vegetable Chinese pulao', img:'img/chinese-pulao.jpg' },
+    { id:'rc12', name:'Fried Rice',                 marathi:'फ्राईड राईस',             price:100, category:'rice', diet:'veg',    desc:'Classic wok-tossed fried rice', img:'img/fried-rice.jpg' },
+    { id:'rc13', name:'Chicken Fried Rice',         marathi:'चिकन फ्राय राईस',         price:150, category:'rice', diet:'nonveg', desc:'Wok-tossed chicken & egg Indo-Chinese fried rice', img:'img/chicken-fried-rice.jpg' },
+    { id:'rc14', name:'Anda Fried Rice',            marathi:'अंडा फ्राय राईस',         price:130, category:'rice', diet:'nonveg', desc:'Spiced scrambled egg fried rice', img:'img/anda-fried-rice.jpg' },
+    { id:'rc15', name:'Chicken Triple Rice',        marathi:'चिकन ट्रिपल राईस',        price:200, category:'rice', diet:'nonveg', desc:'Triple-layer chicken fried rice, noodles & spicy gravy', img:'img/chicken-triple-rice.jpg' },
+    { id:'rc16', name:'Chicken Hong Kong Fried Rice',marathi:'चिकन हाँगकाँग फ्राय राईस',price:200,category:'rice', diet:'nonveg', desc:'Savory Hong Kong style chicken fried rice', img:'img/chicken-hong-kong-fried-rice.jpg' },
+    { id:'rc17', name:'Chicken Biryani',            marathi:'चिकन बिर्याणी',            price:250, category:'rice', diet:'nonveg', desc:'Fragrant basmati rice dum-cooked with spiced chicken', img:'img/chicken-biryani.jpg' },
+    { id:'rc18', name:'Mutton Biryani',             marathi:'मटण बिर्याणी',             price:300, category:'rice', diet:'nonveg', desc:'Royal aromatic basmati biryani with tender mutton', img:'img/mutton-biryani.jpg' },
+    { id:'rc19', name:'Chicken Leg Biryani',        marathi:'चिकन लेग बिर्याणी',        price:200, category:'rice', diet:'nonveg', desc:'Aromatic chicken biryani served with whole leg piece', img:'img/chicken-leg-biryani.jpg' },
+    { id:'rc20', name:'Chicken Dum Biryani',        marathi:'चिकन दम बिर्याणी',         price:200, category:'rice', diet:'nonveg', desc:'Slow-sealed dum pukht spiced chicken biryani', img:'img/chicken-dum-biryani.jpg' },
+    { id:'rc21', name:'Chicken Hyderabadi Biryani', marathi:'चिकन हैद्राबादी बिर्याणी', price:200, category:'rice', diet:'nonveg', desc:'Spicy Hyderabadi style mint & saffron chicken biryani', img:'img/chicken-hyderabadi-biryani.jpg' }
+  ];
+
+  const categoryLabels = {
+    soup:'Soups',
+    vegsnacks:'Veg Snacks',
+    nonvegsnacks:'Non-Veg Starters',
+    vegspecial:'Veg Special',
+    paneer:'Paneer & Palak',
+    nonvegspecial:'Non-Veg Main',
+    rice:'Rice & Biryani',
+    roti:'Roti & Naan',
+    papad:'Papad'
+  };
+
+  /* ============ STATE ============ */
+  let cart = {};
+  try { cart = JSON.parse(localStorage.getItem('gauravCart')) || {}; } catch(e){ cart = {}; }
+  let activeCategory = 'all';
+  let searchQuery = '';
+  let orderType = 'takeaway';
+
+  /* ============ DOM ============ */
+  const $ = id => document.getElementById(id);
+  const menuGrid = $('menuGrid');
+  const searchInput = $('searchInput');
+  const searchBtn = $('searchBtn');
+  const categoryContainer = $('categoryContainer');
+  const cartCountEl = $('cartCount');
+  const cartItemsEl = $('cartItems');
+  const cartTotalEl = $('cartTotal');
+  const stickyCart = $('stickyCart');
+  const cartPanel = $('cartPanel');
+  const cartOverlay = $('cartOverlay');
+  const closeCartBtn = $('closeCart');
+  const deliveryToggle = $('deliveryToggle');
+  const whatsappBtn = $('whatsappBtn');
+  const customerName = $('customerName');
+  const customerPhone = $('customerPhone');
+  const customerAddress = $('customerAddress');
+  const tableNumber = $('tableNumber');
+  const takeawayFields = $('takeawayFields');
+  const deliveryFields = $('deliveryFields');
+  const heroOrderBtn = $('heroOrderBtn');
+  const heroMenuBtn = $('heroMenuBtn');
+  const toastEl = $('toast');
+
+  /* ============ HELPERS ============ */
+  const formatPrice = p => '₹' + p;
+  const getItemById = id => menuItems.find(i => i.id === id);
+  const escapeHtml = str => String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+  let toastTimer;
+  function showToast(msg, icon){
+    toastEl.innerHTML = (icon ? '<i class="fas '+icon+'"></i>' : '') + '<span>' + escapeHtml(msg) + '</span>';
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+  }
+
+  /* ============ RENDER MENU ============ */
+  function renderMenu(){
+    let filtered = menuItems.slice();
+    if (activeCategory !== 'all') filtered = filtered.filter(i => i.category === activeCategory);
+    const q = searchQuery.trim().toLowerCase();
+    if (q){
+      filtered = filtered.filter(i =>
+        i.name.toLowerCase().includes(q) ||
+        (i.marathi && i.marathi.includes(searchQuery.trim())) ||
+        i.desc.toLowerCase().includes(q)
+      );
+    }
+
+    if (filtered.length === 0){
+      menuGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;color:#8B9AAB;"><i class="fas fa-search" style="font-size:3rem;color:var(--saffron);opacity:.4;display:block;margin-bottom:1rem;"></i><p style="font-size:1.1rem;">No dishes found. Try another search.</p></div>';
+      return;
+    }
+
+    menuGrid.innerHTML = filtered.map(item => {
+      const qty = cart[item.id] || 0;
+      const catLabel = categoryLabels[item.category] || item.category;
+      const dietClass = item.diet === 'veg' ? 'veg' : 'nonveg';
+      return `
+        <article class="menu-card" data-id="${item.id}">
+          <div class="card-img-wrapper">
+            <span class="cat-tag"><span class="diet-dot ${dietClass}"></span> ${escapeHtml(catLabel)}</span>
+            <span class="price-badge">${formatPrice(item.price)}</span>
+            <img class="card-img" src="${item.img}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+          </div>
+          <div class="card-content">
+            <div class="card-title-row">
+              <h3 class="card-title">${escapeHtml(item.name)}<small>${escapeHtml(item.marathi || '')}</small></h3>
+            </div>
+            <p class="card-desc">${escapeHtml(item.desc)}</p>
+            <div class="card-footer">
+              <div class="qty-control" aria-label="Quantity">
+                <button class="qty-btn" data-action="decrease" data-id="${item.id}" aria-label="Decrease">−</button>
+                <span class="qty-value" id="qty-${item.id}">${qty}</span>
+                <button class="qty-btn" data-action="increase" data-id="${item.id}" aria-label="Increase">+</button>
+              </div>
+              <button class="add-btn" data-action="add" data-id="${item.id}">
+                <i class="fas fa-plus"></i> Add
+              </button>
+            </div>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  /* ============ UPDATE CART UI ============ */
+  function updateCartUI(){
+    const totalItems = Object.values(cart).reduce((s, q) => s + q, 0);
+    cartCountEl.textContent = totalItems;
+
+    const cartIds = Object.keys(cart).filter(id => cart[id] > 0);
+
+    if (cartIds.length === 0){
+      cartItemsEl.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-basket"></i><span>Your cart is empty</span><span style="font-size:.8rem;color:#aaa;">Add some delicious dishes!</span></div>';
+    } else {
+      cartItemsEl.innerHTML = cartIds.map(id => {
+        const item = getItemById(id);
+        if (!item) return '';
+        const qty = cart[id];
+        return `
+          <div class="cart-item">
+            <img class="cart-item-img" src="${item.img}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+            <div class="cart-item-info">
+              <span class="cart-item-title">${escapeHtml(item.name)}</span>
+              <span class="cart-item-marathi">${escapeHtml(item.marathi || '')}</span>
+              <span class="cart-item-price">${formatPrice(item.price)} × ${qty} = ${formatPrice(item.price * qty)}</span>
+            </div>
+            <div class="cart-item-qty">
+              <button data-action="decrease" data-id="${id}" aria-label="Decrease">−</button>
+              <span>${qty}</span>
+              <button data-action="increase" data-id="${id}" aria-label="Increase">+</button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    const total = cartIds.reduce((s, id) => {
+      const item = getItemById(id);
+      return s + (item ? item.price * cart[id] : 0);
+    }, 0);
+    cartTotalEl.textContent = formatPrice(total);
+
+    menuItems.forEach(item => {
+      const el = document.getElementById('qty-' + item.id);
+      if (el) el.textContent = cart[item.id] || 0;
+    });
+
+    try { localStorage.setItem('gauravCart', JSON.stringify(cart)); } catch(e){}
+  }
+
+  /* ============ CART ACTIONS ============ */
+  function addItem(id){
+    cart[id] = (cart[id] || 0) + 1;
+    updateCartUI();
+  }
+  function decreaseItem(id){
+    if (cart[id] && cart[id] > 0){
+      cart[id]--;
+      if (cart[id] === 0) delete cart[id];
+    }
+    updateCartUI();
+  }
+
+  /* ============ EVENT DELEGATION ============ */
+  menuGrid.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const { action, id } = btn.dataset;
+    if (action === 'add' || action === 'increase'){
+      addItem(id);
+      const item = getItemById(id);
+      if (item) showToast(item.name + ' added', 'fa-check');
+    } else if (action === 'decrease'){
+      decreaseItem(id);
+    }
+  });
+
+  cartItemsEl.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const { action, id } = btn.dataset;
+    if (action === 'increase') addItem(id);
+    else if (action === 'decrease') decreaseItem(id);
+  });
+
+  /* ============ CATEGORY FILTER ============ */
+  categoryContainer.addEventListener('click', e => {
+    const btn = e.target.closest('.cat-btn');
+    if (!btn) return;
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.category;
+    renderMenu();
+  });
+
+  /* ============ SEARCH ============ */
+  function performSearch(){
+    searchQuery = searchInput.value;
+    renderMenu();
+  }
+  searchBtn.addEventListener('click', performSearch);
+  searchInput.addEventListener('input', performSearch);
+
+  /* ============ CART PANEL OPEN/CLOSE ============ */
+  let lastFocused = null;
+  function openCart(){
+    lastFocused = document.activeElement;
+    cartPanel.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => closeCartBtn.focus(), 350);
+  }
+  function closeCartPanel(){
+    cartPanel.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+  stickyCart.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCartPanel);
+  cartOverlay.addEventListener('click', closeCartPanel);
+
+  /* ============ ORDER TYPE TOGGLE ============ */
+  function updateOrderFields(){
+    if (orderType === 'takeaway'){
+      takeawayFields.style.display = 'block';
+      deliveryFields.style.display = 'none';
+    } else {
+      takeawayFields.style.display = 'none';
+      deliveryFields.style.display = 'block';
+    }
+  }
+
+  deliveryToggle.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-type]');
+    if (!btn) return;
+    orderType = btn.dataset.type;
+    document.querySelectorAll('#deliveryToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    updateOrderFields();
+  });
+
+  /* ============ WHATSAPP ORDER ============ */
+  whatsappBtn.addEventListener('click', () => {
+    const cartIds = Object.keys(cart).filter(id => cart[id] > 0);
+    if (cartIds.length === 0){ showToast('Your cart is empty', 'fa-shopping-basket'); return; }
+
+    const table = tableNumber.value.trim();
+    const name = customerName.value.trim();
+    const phone = customerPhone.value.trim();
+    const address = customerAddress.value.trim();
+
+    if (orderType === 'takeaway'){
+      if (!table){ showToast('Please enter Table No. or Parcel', 'fa-exclamation-circle'); tableNumber.focus(); return; }
+    } else {
+      if (!name){ showToast('Please enter your name', 'fa-exclamation-circle'); customerName.focus(); return; }
+      if (!phone){ showToast('Please enter your phone number', 'fa-exclamation-circle'); customerPhone.focus(); return; }
+      if (!/^[\d+\-\s()]{6,}$/.test(phone)){ showToast('Enter a valid phone number', 'fa-exclamation-circle'); customerPhone.focus(); return; }
+      if (!address){ showToast('Please enter delivery address', 'fa-exclamation-circle'); customerAddress.focus(); return; }
+    }
+
+    const total = cartIds.reduce((s, id) => {
+      const item = getItemById(id);
+      return s + (item ? item.price * cart[id] : 0);
+    }, 0);
+
+    const lines = cartIds.map(id => {
+      const item = getItemById(id);
+      if (!item) return '';
+      return `• ${item.name} (${item.marathi || ''}) x${cart[id]} = ₹${item.price * cart[id]}`;
+    }).filter(Boolean).join('\n');
+
+    let msg = `*हॉटेल गौरव (Hotel Gaurav) Order*\n\n`;
+    msg += `*Order Type:* ${orderType === 'takeaway' ? 'Dine-in / Takeaway' : 'Home Delivery'}\n`;
+    if (orderType === 'takeaway'){
+      msg += `*Table / Parcel:* ${table}\n`;
+    } else {
+      msg += `*Name:* ${name}\n`;
+      msg += `*Phone:* ${phone}\n`;
+      msg += `*Address:* ${address}\n`;
+    }
+    msg += `\n*Items:*\n${lines}\n\n`;
+    msg += `*Total: ₹${total}*`;
+
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+    showToast('Opening WhatsApp...', 'fa-whatsapp');
+  });
+
+  /* ============ HERO BUTTONS ============ */
+  heroOrderBtn.addEventListener('click', () => {
+    document.getElementById('menuSection').scrollIntoView({ behavior:'smooth', block:'start' });
+    setTimeout(openCart, 450);
+  });
+  heroMenuBtn.addEventListener('click', () => {
+    document.getElementById('menuSection').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && cartPanel.classList.contains('open')) closeCartPanel();
+  });
+
+  /* ============ INIT ============ */
+  renderMenu();
+  updateCartUI();
+  updateOrderFields();
+})();
+</script>
+</body>
+</html>

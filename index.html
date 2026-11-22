@@ -240,7 +240,7 @@ img{max-width:100%;display:block}
   aspect-ratio:16/11;
   background:var(--cream-dim);
 }
-.card-img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--smooth)}
+.card-img{width:100%;height:100%;object-fit:cover;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;image-rendering:pixelated;backface-visibility:hidden;transform:translateZ(0);transition:transform .5s var(--smooth)}
 .menu-card:hover .card-img{transform:scale(1.07)}
 
 .price-badge{position:absolute;top:.85rem;right:.85rem;background:var(--saffron);color:var(--navy);font-family:'Bricolage Grotesque','Poppins',sans-serif;font-weight:800;font-size:1.1rem;padding:.35rem .95rem;border-radius:50px;box-shadow:0 4px 14px rgba(11,27,43,.25);letter-spacing:-.02em;z-index:2}
@@ -287,7 +287,7 @@ img{max-width:100%;display:block}
 .cart-items{flex:1;overflow-y:auto;margin:.5rem 0 1rem;max-height:42vh;padding-right:.4rem}
 .cart-item{display:flex;gap:.9rem;align-items:center;padding:.85rem .9rem;margin-bottom:.65rem;background:var(--cream);border-radius:16px;border:1.5px solid rgba(11,27,43,.08);animation:fadeSlideIn .3s var(--smooth)}
 @keyframes fadeSlideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
-.cart-item-img{width:68px;height:68px;border-radius:14px;object-fit:cover;flex-shrink:0;background:var(--cream-dim);border:2px solid #fff;box-shadow:0 2px 8px rgba(11,27,43,.1)}
+.cart-item-img{width:68px;height:68px;border-radius:14px;object-fit:cover;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;image-rendering:pixelated;flex-shrink:0;background:var(--cream-dim);border:2px solid #fff;box-shadow:0 2px 8px rgba(11,27,43,.1)}
 .cart-item-info{display:flex;flex-direction:column;flex:1;min-width:0}
 .cart-item-title{font-weight:700;color:var(--navy);font-size:.98rem;line-height:1.25}
 .cart-item-marathi{font-size:.78rem;color:#7A8B9C;margin-bottom:.15rem}
@@ -904,7 +904,7 @@ img{max-width:100%;display:block}
           <div class="card-img-wrapper">
             <span class="cat-tag"><span class="diet-dot ${dietClass}"></span> ${escapeHtml(catLabel)}</span>
             <span class="price-badge">${formatPrice(item.price)}</span>
-            <img class="card-img" src="${item.img}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+            <img class="card-img" src="${item.img}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
           </div>
           <div class="card-content">
             <div class="card-title-row">
@@ -942,7 +942,7 @@ img{max-width:100%;display:block}
         const qty = cart[id];
         return `
           <div class="cart-item">
-            <img class="cart-item-img" src="${item.img}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+            <img class="cart-item-img" src="${item.img}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
             <div class="cart-item-info">
               <span class="cart-item-title">${escapeHtml(item.name)}</span>
               <span class="cart-item-marathi">${escapeHtml(item.marathi || '')}</span>
@@ -1076,55 +1076,50 @@ img{max-width:100%;display:block}
     } else {
       if (!name){ showToast('Please enter your name', 'fa-exclamation-circle'); customerName.focus(); return; }
       if (!phone){ showToast('Please enter your phone number', 'fa-exclamation-circle'); customerPhone.focus(); return; }
-      if (!/^[\d+\-\s()]{6,}$/.test(phone)){ showToast('Enter a valid phone number', 'fa-exclamation-circle'); customerPhone.focus(); return; }
       if (!address){ showToast('Please enter delivery address', 'fa-exclamation-circle'); customerAddress.focus(); return; }
     }
+
+    let msg = '*🍽️ Hotel Gaurav Order*\n';
+    msg += '------------------------\n';
+
+    cartIds.forEach(id => {
+      const item = getItemById(id);
+      if (!item) return;
+      const qty = cart[id];
+      msg += `• ${item.name} × ${qty} = ₹${item.price * qty}\n`;
+    });
 
     const total = cartIds.reduce((s, id) => {
       const item = getItemById(id);
       return s + (item ? item.price * cart[id] : 0);
     }, 0);
 
-    const lines = cartIds.map(id => {
-      const item = getItemById(id);
-      if (!item) return '';
-      return `• ${item.name} (${item.marathi || ''}) x${cart[id]} = ₹${item.price * cart[id]}`;
-    }).filter(Boolean).join('\n');
+    msg += '------------------------\n';
+    msg += `*Total: ₹${total}*\n\n`;
 
-    let msg = `*हॉटेल गौरव (Hotel Gaurav) Order*\n\n`;
-    msg += `*Order Type:* ${orderType === 'takeaway' ? 'Dine-in / Takeaway' : 'Home Delivery'}\n`;
     if (orderType === 'takeaway'){
-      msg += `*Table / Parcel:* ${table}\n`;
+      msg += `*Order Type:* Table / Takeaway\n`;
+      msg += `*Table/Parcel:* ${table}\n`;
     } else {
+      msg += `*Order Type:* Delivery\n`;
       msg += `*Name:* ${name}\n`;
       msg += `*Phone:* ${phone}\n`;
       msg += `*Address:* ${address}\n`;
     }
-    msg += `\n*Items:*\n${lines}\n\n`;
-    msg += `*Total: ₹${total}*`;
 
     const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
     window.open(url, '_blank');
-    showToast('Opening WhatsApp...', 'fa-whatsapp');
   });
 
   /* ============ HERO BUTTONS ============ */
-  heroOrderBtn.addEventListener('click', () => {
-    document.getElementById('menuSection').scrollIntoView({ behavior:'smooth', block:'start' });
-    setTimeout(openCart, 450);
-  });
+  heroOrderBtn.addEventListener('click', openCart);
   heroMenuBtn.addEventListener('click', () => {
-    document.getElementById('menuSection').scrollIntoView({ behavior:'smooth', block:'start' });
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && cartPanel.classList.contains('open')) closeCartPanel();
+    document.getElementById('menuSection').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
   /* ============ INIT ============ */
   renderMenu();
   updateCartUI();
-  updateOrderFields();
 })();
 </script>
 </body>
